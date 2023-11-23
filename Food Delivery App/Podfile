@@ -1,0 +1,20 @@
+# Uncomment the next line to define a global platform for your project
+ #platform :ios, '15.0'
+
+target 'Food Delivery App' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for Food Delivery App
+  
+  pod 'Alamofire'
+
+  pod 'Kingfisher', '~> 7.0'
+  
+  pod 'lottie-ios', '~> 4.2'
+   
+  pod 'Hero', '~> 1.6'
+  
+  pod 'IQKeyboardManagerSwift'
+  
+end
