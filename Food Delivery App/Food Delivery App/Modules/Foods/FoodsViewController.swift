@@ -108,7 +108,7 @@ extension FoodsViewController: collectionV {
         }
         
         cell.indexPath = indexPath
-        cell.delegate = self
+        cell.foodDelegate = self
         return cell
     }
     

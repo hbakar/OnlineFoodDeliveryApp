@@ -75,7 +75,7 @@ class HomeTableItemSliderCell: UITableViewCell {
         Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(scrollingSetup), userInfo: nil, repeats: true)
     }
     
-    @objc func scrollingSetup(){
+    @objc func scrollingSetup() {
         
         if index < sliderDataList.count - 1 {
             index = index + 1

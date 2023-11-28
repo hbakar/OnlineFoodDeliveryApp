@@ -207,9 +207,9 @@
 		DC5BF6772B0E927400EA0F6D /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				DC5BF6782B0E927900EA0F6D /* Cell */,
 				DCD8AAA92B0F5C9400DCC39A /* ViewModel */,
 				DCD8AAA42B0F543F00DCC39A /* DataProvider */,
-				DC5BF6782B0E927900EA0F6D /* Cell */,
 				DCE603002B0E7D0B001663B1 /* HomeViewController.swift */,
 				DCE603012B0E7D0B001663B1 /* HomeViewController.xib */,
 			);
@@ -219,9 +219,9 @@
 		DC5BF6782B0E927900EA0F6D /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				DCE7AA5C2B1632EF006099BD /* FoodCell */,
 				DCD8AAA32B0F526C00DCC39A /* HomeSliderCell */,
 				DCD968EE2B1535E100A5D400 /* CategoryCell */,
+				DCE7AA5C2B1632EF006099BD /* FoodCell */,
 			);
 			path = Cell;
 			sourceTree = "<group>";

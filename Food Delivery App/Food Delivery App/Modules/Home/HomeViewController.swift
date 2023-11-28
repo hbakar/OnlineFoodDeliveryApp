@@ -29,6 +29,23 @@ final class HomeViewController: UIViewController, tableV {
         viewModel?.getSliderItems()
         viewModel?.getCategoryItems()
         viewModel?.getAllFoods(with: Constants.allFoodsURL)
+        
+        if navigationController != nil {
+            print("boş")
+            let view = UIImageView(image: UIImage(named: "menu"))
+            self.navigationController?.navigationItem.titleView = view
+        }
+        
+     //   let view = UIImageView(image: UIImage(named: "menu")?.withRenderingMode(.alwaysOriginal))
+     //   self.navigationItem.titleView = view
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu")?.withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(tests))
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "profile-circle")?.withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(tests))
+     
+    }
+    
+    @objc func tests() {
+        print("test")
     }
     
     @IBAction func btnRemoveClicked(_ sender: Any) {
@@ -40,12 +57,17 @@ final class HomeViewController: UIViewController, tableV {
         let nib = UINib(nibName: nibName, bundle: .main)
         homeTableView.register(nib, forCellReuseIdentifier: nibName)
         
-        
         // category cell
         
         let nibNameCat = String(describing: HomeCategoryCell.self)
         let nibCat = UINib(nibName: nibNameCat, bundle: .main)
         homeTableView.register(nibCat, forCellReuseIdentifier: nibNameCat)
+        
+        // foods cell
+        
+        let nibNameFood = String(describing: FoodTableViewCell.self)
+        let nibFood = UINib(nibName: nibNameFood, bundle: .main)
+        homeTableView.register(nibFood, forCellReuseIdentifier: nibNameFood)
     }
     
     private func setupTableView() {
@@ -57,6 +79,7 @@ final class HomeViewController: UIViewController, tableV {
 
 
 extension HomeViewController {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         guard let sectionCount = viewModel?.homeTableItems.count
         else { return 0 }
@@ -72,8 +95,7 @@ extension HomeViewController {
         case .categoryTableItem:
             return 1
         case .productsTableItem:
-            return 0
-       
+            return 1
         }
     }
     
@@ -94,7 +116,10 @@ extension HomeViewController {
                 return cell
             }
         case .productsTableItem:
-            print(123)
+            if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: FoodTableViewCell.self)) as? FoodTableViewCell {
+                cell.foodList = self.viewModel?.foodList ?? []
+                return cell
+            }
         }
         
         return UITableViewCell()
@@ -107,7 +132,7 @@ extension HomeViewController {
         }
         
         if indexPath.section == 1 {
-            return 68 // 36
+            return 60 // 36  44
         }
         
         return self.homeTableView.frame.size.height - 200
@@ -118,12 +143,7 @@ extension HomeViewController {
         
     }
     
-    func changeColor(itemApperance: UITabBarItemAppearance) {
-        itemApperance.selected.iconColor = UIColor(named: "primaryColor")
-    }
-    
 }
-
 
 extension HomeViewController: HomeViewModelDelegate {
     
@@ -146,6 +166,10 @@ extension HomeViewController: HomeViewModelDelegate {
                 self.homeTableView.reloadData()
             }
         case .fetchFailedCategory(let error):
+            print(error.localizedDescription)
+        case .didAddToCart:
+            print(123)
+        case .addToCartFailed(let error):
             print(error.localizedDescription)
         }
     }

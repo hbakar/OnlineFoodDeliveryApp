@@ -10,5 +10,7 @@ import Alamofire
 
 protocol HomeDataProviderProtocol {
     func getAllFoods(with url: String, completion:@escaping(Result<FoodsResponse, AFError>) ->())
+    
+    func addToCart(with urlString: String,params: [String: Any], completion: @escaping(Result<CartResponse, Error>) ->())
 }
  

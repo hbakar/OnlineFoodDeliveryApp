@@ -22,7 +22,7 @@ class FoodItemCell: UICollectionViewCell {
     
     @IBOutlet weak var buttonAdd: UIButton!
     
-    var delegate: FoodItemCellDelegate?
+    weak var foodDelegate: FoodItemCellDelegate?
     
     var indexPath: IndexPath?
     
@@ -32,17 +32,17 @@ class FoodItemCell: UICollectionViewCell {
         configure()
     }
     
-     func configure() {
+    func configure() {
         foodImage.clipsToBounds = true
         foodImage.layer.cornerRadius = 12
         
         buttonAdd.layer.borderColor = UIColor.primary.cgColor
-        buttonAdd.layer.borderWidth = 0.7
+        buttonAdd.layer.borderWidth = 1
         
         self.contentView.layer.cornerRadius = 12
         self.contentView.layer.masksToBounds = true
         self.contentView.layer.borderColor = UIColor(white: 0.95, alpha: 1).cgColor
-        self.contentView.layer.borderWidth = 0.7
+        self.contentView.layer.borderWidth = 1
         
         /*
          self.contentView.layer.shadowColor = UIColor.black.cgColor
@@ -53,19 +53,19 @@ class FoodItemCell: UICollectionViewCell {
     }
     
     func prepareForFood(with model: FoodsResponseResult) {
-       
-            if var imgPath = model.imagePath {
-                imgPath = Constants.getFoodImage.appending(imgPath)
-                let url = URL(string: imgPath)
-                foodImage.kf.setImage(with: url)
-            }
+        
+        if var imgPath = model.imagePath {
+            imgPath = Constants.getFoodImage.appending(imgPath)
+            let url = URL(string: imgPath)
+            foodImage.kf.setImage(with: url)
+        }
         
         titleLabel.text = model.name ?? ""
         priceLabel.text = model.price?.appending(" ₺") ?? ""
     }
     
     @IBAction func buttonAddClicked(_ sender: Any) {
-        self.delegate?.didClicked(indexPath: indexPath!)
+        self.foodDelegate?.didClicked(indexPath: indexPath!)
     }
     
 }

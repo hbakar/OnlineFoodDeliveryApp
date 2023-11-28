@@ -7,56 +7,73 @@
 
 import UIKit
 
- class MainTabController: UITabBarController,UITabBarControllerDelegate {
+class MainTabController: UITabBarController,UITabBarControllerDelegate {
+    
+   
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+    
         configure()
     }
     
     private func configure() {
-       setNavigationItems()
-       customizeTabbar()
         
-   }
-     
+        setNavigationItems()
+        customizeTabbar()
+    }
+    
     private func customizeTabbar() {
         let appearance = UITabBarAppearance()
-        appearance.backgroundColor = .systemIndigo
+        appearance.backgroundColor = .white
         changeColor(itemApperance: appearance.stackedLayoutAppearance)
         changeColor(itemApperance: appearance.compactInlineLayoutAppearance)
         changeColor(itemApperance: appearance.inlineLayoutAppearance)
         
+        navigationController?.tabBarItem.standardAppearance = appearance
+        navigationController?.tabBarItem.scrollEdgeAppearance = appearance
+        // navigationController?.navigationBar.backgroundColor = .black
         
-       tabBarController?.tabBar.standardAppearance = appearance
-       tabBarController?.tabBar.scrollEdgeAppearance = appearance
+        tabBar.tintColor = .primaryColor
+        tabBar.barTintColor = .white
+        
+        tabBar.standardAppearance = appearance
+        tabBar.scrollEdgeAppearance = appearance
+        //    tabBarController?.tabBar.standardAppearance = appearance
+        //  tabBarController?.tabBar.scrollEdgeAppearance = appearance
     }
     
-     func changeColor(itemApperance: UITabBarItemAppearance) {
-         itemApperance.selected.iconColor = UIColor(named: "primaryColor")
-     }
+    func changeColor(itemApperance: UITabBarItemAppearance) {
+        itemApperance.selected.iconColor = UIColor(named: "primaryColor")
+    }
     
-     func templateNavigationController(title: String, image: UIImage, rootViewController: UIViewController) -> UINavigationController
-     {
-         let nav = UINavigationController(rootViewController: rootViewController)
-         nav.tabBarItem.image = title.isEmpty ? image.withRenderingMode(.alwaysOriginal) : image
-         nav.tabBarItem.title = title
-         nav.navigationBar.backgroundColor = .blue
-         nav.tabBarController?.tabBar.backgroundColor = .red
-         return nav
-     }
+    func templateNavigationController(title: String, image: UIImage, rootViewController: UIViewController) -> UINavigationController
+    {
+        //view controller ların background ını ayarladık
+        rootViewController.view.backgroundColor = .white
+        
+        let nav = UINavigationController(rootViewController: rootViewController)
+        nav.tabBarItem.image = title.isEmpty ? image.withRenderingMode(.alwaysOriginal) : image
+        
+        
+        nav.tabBarItem.title = title
+        nav.navigationBar.backgroundColor = .white
+        //nav.tabBarController?.tabBar.backgroundColor = .red
+        return nav
+    }
     
     private func setNavigationItems() {
         
-        let homeDataProvider = HomeDataProvider()
+        // tabBar.tintColor = UIColor.primaryColor // Seçili olan tabın rengi
+        //    tabBar.barTintColor = UIColor.gray10
         
+        let homeDataProvider = HomeDataProvider()
         let homeViewController = HomeViewController(nibName: String(describing: HomeViewController.self), bundle: .main)
         
         homeViewController.viewModel = HomeViewModel(service: homeDataProvider)
         
         let orderViewController = OrderViewController(nibName: String(describing: OrderViewController.self), bundle: .main)
-        
         
         let cartDataProvider = CartDataProvider()
         let cartViewController = CartViewController(nibName: String(describing: CartViewController.self), bundle: .main)
@@ -66,7 +83,7 @@ import UIKit
         
         let profileViewController = ProfileViewController(nibName: String(describing: ProfileViewController.self), bundle: .main)
         
-        let navigationControllerHome: UINavigationController = templateNavigationController(title: "Home", image:UIImage(named:"home")!,rootViewController: homeViewController )
+        let navigationControllerHome: UINavigationController = templateNavigationController(title: "Home", image:UIImage(named:"home")!,rootViewController: homeViewController)
         
         let navigationControllerOrder: UINavigationController = templateNavigationController(title: "Order", image:UIImage(named:"task-square")!,rootViewController: orderViewController)
         
@@ -76,26 +93,14 @@ import UIKit
         
         let navigationControllerProfile: UINavigationController = templateNavigationController(title: "Profile", image:UIImage(named:"profile-circle")!,rootViewController: profileViewController)
         
-       
-        self.setViewControllers([navigationControllerHome, navigationControllerOrder, navigationControllerCart, navigationControllerChat, navigationControllerProfile], animated: true)
+        self.viewControllers = [navigationControllerHome, navigationControllerOrder, navigationControllerCart, navigationControllerChat, navigationControllerProfile]
+        
+        if let items = tabBar.items {
+            items[0].selectedImage = UIImage(named: "home-selected")
+        }
     }
-     
+    
 }
 
-extension UIImage {
-    static func imageWithColor(_ color: UIColor) -> UIImage {
-        let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
-        UIGraphicsBeginImageContext(rect.size)
-        let context = UIGraphicsGetCurrentContext()
-
-        context?.setFillColor(color.cgColor)
-        context?.fill(rect)
-
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-
-        return image ?? UIImage()
-    }
-}
 
 

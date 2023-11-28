@@ -17,13 +17,13 @@ class HomeCategoryItemCell: UICollectionViewCell {
 
     @IBOutlet weak var buttonCategory: UIButton!
     
-    var delegate: HomeCategoryItemCellDelegate?
+    weak var delegate: HomeCategoryItemCellDelegate?
     var indexPath: IndexPath?
    
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+       
     }
     
     func prepareForCategoryItem(with model: Category) {
@@ -39,7 +39,15 @@ class HomeCategoryItemCell: UICollectionViewCell {
     }
     
     @IBAction func buttonCategoryClicked(_ sender: Any) {
+        
         self.delegate?.didClicked(indexPath: indexPath!)
+        
+        if buttonCategory.state == .selected {
+            buttonCategory.backgroundColor = .secondary
+        }
+        else if buttonCategory.state == .normal {
+            buttonCategory.backgroundColor = .primary
+        }
     }
     
 }

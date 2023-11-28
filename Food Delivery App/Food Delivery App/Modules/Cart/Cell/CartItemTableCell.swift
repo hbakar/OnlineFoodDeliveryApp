@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-protocol CartItemTableCellDelegate {
+protocol CartItemTableCellDelegate: AnyObject {
     func didClickedDeleteButton(indexPath: IndexPath)
 }
 
@@ -21,7 +21,7 @@ class CartItemTableCell: UITableViewCell {
     @IBOutlet private weak var cartDescription: UILabel!
     
     var indexPath: IndexPath?
-    var delegate: CartItemTableCellDelegate?
+    weak var delegate: CartItemTableCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
