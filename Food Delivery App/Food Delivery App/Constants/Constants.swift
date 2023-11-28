@@ -14,4 +14,5 @@ struct Constants {
     static let allFoodsFromCartURL = "\(baseURL)\(path)/sepettekiYemekleriGetir.php"
     static let addToCartURL = "\(baseURL)\(path)/sepeteYemekEkle.php"
     static let removeFromCartURL = "\(baseURL)\(path)/sepettenYemekSil.php"
+    static let getFoodImage = "\(baseURL)\(path)/resimler/"
 }

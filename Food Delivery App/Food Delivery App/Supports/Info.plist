@@ -7,6 +7,14 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Inter-Regular</string>
+		<string>Inter-Medium</string>
+		<string>Inter-SemiBold</string>
+		<string>Inter-Bold</string>
+		<string>Inter-ExtraBold</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

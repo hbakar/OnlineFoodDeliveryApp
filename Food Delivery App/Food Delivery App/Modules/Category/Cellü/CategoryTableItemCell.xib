@@ -34,22 +34,22 @@
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="flv-s0-bNT">
-                        <rect key="frame" x="124" y="10" width="220" height="95"/>
+                        <rect key="frame" x="124" y="10" width="220" height="93.666666666666671"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nrW-Jo-svR">
-                                <rect key="frame" x="0.0" y="0.0" width="220" height="17"/>
+                                <rect key="frame" x="0.0" y="0.0" width="220" height="16.333333333333332"/>
                                 <fontDescription key="fontDescription" name="Inter-Medium" family="Inter" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jiK-ov-B5v">
-                                <rect key="frame" x="0.0" y="33" width="220" height="16"/>
+                                <rect key="frame" x="0.0" y="32.333333333333336" width="220" height="15.333333333333336"/>
                                 <fontDescription key="fontDescription" name="Inter-Medium" family="Inter" pointSize="13"/>
                                 <color key="textColor" systemColor="systemGray2Color"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="UFT-4F-350">
-                                <rect key="frame" x="0.0" y="65" width="100" height="30"/>
+                                <rect key="frame" x="0.0" y="63.666666666666671" width="100" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GNN-Kz-pIH">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>

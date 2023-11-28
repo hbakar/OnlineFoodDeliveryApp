@@ -14,7 +14,7 @@ final class ServiceManager {
     private init() { }
     
     func fetchRequest<T: Decodable>(urlString: String, completion: @escaping(Result<T, AFError>) ->()) {
-     
+        
         guard let url = URL(string: urlString) else {
             completion(.failure(AFError.invalidURL(url: urlString)))
             return}
@@ -25,10 +25,33 @@ final class ServiceManager {
             case .success(let success):
                 completion(.success(success))
             case .failure(let failure):
-                completion(.failure(failure.localizedDescription as! Error as! AFError))
+                completion(.failure(failure))
             }
             
         }
     }
     
+    func post<T: Codable>(urlString: String,params: Parameters, completion: @escaping(Result<T, Error>) ->()) {
+        
+        guard let url = URL(string: urlString) else {
+            completion(.failure(AFError.invalidURL(url: urlString)))
+            return}
+        
+        AF.request(url, method: .post, parameters: params, encoding: JSONEncoding.default)
+            .validate()
+            .responseData { response in
+                switch response.result {
+                case .success(let data):
+                    let decoder = JSONDecoder()
+                    do {
+                        let cevap = try decoder.decode(T.self, from: data)
+                        completion(.success(cevap))
+                    } catch {
+                        completion(.failure(error))
+                    }
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
+    }
 }

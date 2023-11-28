@@ -10,6 +10,12 @@ import Alamofire
 
 class HomeViewModel: HomeViewModelProtocol {
     
+    var sliderList: [Slider] = []
+    
+    var categoryList: [Category] = []
+   
+    var homeTableItems: [HomeTableItem] = []
+    
     var delegate: HomeViewModelDelegate?
     
     var foodList: [FoodsResponseResult] = []
@@ -34,8 +40,24 @@ class HomeViewModel: HomeViewModelProtocol {
         }
     }
     
-    func getSliderItems() {
+    func getCategoryItems() {
+        categoryList = [Category(id: 1, name: "Sandwiches"),Category(id: 2, name: "Grill"),Category(id: 3, name: "Salads"),
+            Category(id: 4, name: "Drinks"),
+                        Category(id: 5, name: "Chips")
+        ]
         
+        homeTableItems.append(.categoryTableItem)
+        
+        self.delegate?.notify(.didFetchCategoryList)
+    }
+    
+    func getSliderItems() {
+      
+        homeTableItems.append(.sliderTableItem)
+        
+        sliderList = [Slider(id: 1, name: "slide002",imageURL: "https://placehold.co/400x200/png",title: "Lorem ipsum dolor sit amet",address: "Istanbul / TURKEY"),Slider(id: 2, name: "slide002",imageURL: "https://placehold.co/400x200/png",title: "Lorem ipsum dolor sit amet",address: "Istanbul / TURKEY"),Slider(id: 3, name: "slide002",imageURL: "https://placehold.co/400x200/png",title: "Lorem ipsum dolor sit amet",address: "Istanbul / TURKEY")]
+        
+        self.delegate?.notify(.didFetchSliderList)
     }
 }
 
@@ -46,9 +68,14 @@ protocol HomeViewModelDelegate: AnyObject {
 enum HomeViewModelEvents {
     case didFetchFoodsList
     case fetchFailedFoods(Error)
+    case didFetchSliderList
+    case fetchFailedSlider(Error)
+    case didFetchCategoryList
+    case fetchFailedCategory(Error)
 }
 
-enum HomeTableItems {
+enum HomeTableItem {
     case sliderTableItem
+    case categoryTableItem
     case productsTableItem
 }

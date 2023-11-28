@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "task-square.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
