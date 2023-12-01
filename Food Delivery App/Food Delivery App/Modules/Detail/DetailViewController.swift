@@ -11,6 +11,8 @@ final class DetailViewController: UIViewController {
     
     @IBOutlet weak var detailTableView: UITableView!
     
+    var viewModel: DetailViewModelProtocol?
+    
     var imageView: UIImageView!
     
     var chosenFood: FoodsResponseResult?
@@ -20,7 +22,6 @@ final class DetailViewController: UIViewController {
         
         setupTableViewCell()
         setupTableView()
-        
     }
     
     private func setupTableView() {
@@ -30,6 +31,9 @@ final class DetailViewController: UIViewController {
     
     private func setupTableViewCell() {
         
+        let nibName = String(describing: DetailItemImageViewCell.self)
+        let nib = UINib(nibName: nibName, bundle: .main)
+        detailTableView.register(nib, forCellReuseIdentifier: nibName)
     }
     
     @IBAction func btnCloseClicked(_ sender: Any) {
@@ -41,11 +45,11 @@ final class DetailViewController: UIViewController {
 extension DetailViewController: tableV {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

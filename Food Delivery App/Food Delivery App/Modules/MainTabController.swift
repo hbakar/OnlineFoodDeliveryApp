@@ -9,9 +9,6 @@ import UIKit
 
 class MainTabController: UITabBarController,UITabBarControllerDelegate {
     
-   
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -56,10 +53,8 @@ class MainTabController: UITabBarController,UITabBarControllerDelegate {
         let nav = UINavigationController(rootViewController: rootViewController)
         nav.tabBarItem.image = title.isEmpty ? image.withRenderingMode(.alwaysOriginal) : image
         
-        
         nav.tabBarItem.title = title
         nav.navigationBar.backgroundColor = .white
-        //nav.tabBarController?.tabBar.backgroundColor = .red
         return nav
     }
     

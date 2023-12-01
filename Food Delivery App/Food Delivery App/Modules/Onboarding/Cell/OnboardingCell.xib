@@ -4,9 +4,18 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Inter-Medium.ttf">
+            <string>Inter-Medium</string>
+        </array>
+        <array key="Inter-Regular.ttf">
+            <string>Inter-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -16,10 +25,80 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="400" height="400"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="o1" translatesAutoresizingMaskIntoConstraints="NO" id="qof-Nb-6hn">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="400"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5kW-ub-6Ur" customClass="Gradient" customModule="Food_Delivery_App" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="180" width="400" height="220"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Z5b-ZL-KPA">
+                                <rect key="frame" x="24" y="69.333333333333343" width="352" height="92.666666666666657"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hoş Geldin" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="saA-YK-F2l">
+                                        <rect key="frame" x="113.66666666666666" y="0.0" width="125" height="29.333333333333332"/>
+                                        <fontDescription key="fontDescription" name="Inter-Medium" family="Inter" pointSize="24"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ornare amet ut imperdiet non id ac volutpat cursus. Adipiscing vitae suspendisse condimentum leo elementum." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w1u-7O-YMy">
+                                        <rect key="frame" x="16.333333333333343" y="45.333333333333343" width="319.33333333333326" height="47.333333333333343"/>
+                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="13"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottomMargin" secondItem="Z5b-ZL-KPA" secondAttribute="bottom" constant="16" id="Dqc-fZ-D1i"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Z5b-ZL-KPA" secondAttribute="trailing" constant="16" id="Fwz-z3-Zyr"/>
+                            <constraint firstItem="Z5b-ZL-KPA" firstAttribute="leading" secondItem="5kW-ub-6Ur" secondAttribute="leadingMargin" constant="16" id="fdk-qy-ZBI"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                <color key="value" name="gray02"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="startLocation">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="endLocation">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="5kW-ub-6Ur" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="78S-mz-QyU"/>
+                <constraint firstAttribute="bottom" secondItem="qof-Nb-6hn" secondAttribute="bottom" id="EdL-nq-4gg"/>
+                <constraint firstAttribute="trailing" secondItem="qof-Nb-6hn" secondAttribute="trailing" id="Emt-jW-tja"/>
+                <constraint firstAttribute="trailing" secondItem="5kW-ub-6Ur" secondAttribute="trailing" id="Mjt-xV-tmy"/>
+                <constraint firstItem="qof-Nb-6hn" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="TSw-XB-Gug"/>
+                <constraint firstAttribute="bottom" secondItem="5kW-ub-6Ur" secondAttribute="bottom" id="bCE-hF-U9z"/>
+                <constraint firstItem="qof-Nb-6hn" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="odV-1F-boc"/>
+                <constraint firstItem="5kW-ub-6Ur" firstAttribute="height" secondItem="qof-Nb-6hn" secondAttribute="height" multiplier="0.55" id="w3a-Lx-5oa"/>
+            </constraints>
             <size key="customSize" width="405" height="314"/>
-            <point key="canvasLocation" x="252.67175572519082" y="80.281690140845072"/>
+            <connections>
+                <outlet property="gradientView" destination="5kW-ub-6Ur" id="HGR-c2-W9M"/>
+                <outlet property="onboardDescription" destination="w1u-7O-YMy" id="qc3-RK-7VY"/>
+                <outlet property="onboardImage" destination="qof-Nb-6hn" id="11e-dl-Zmt"/>
+                <outlet property="onboardTitle" destination="saA-YK-F2l" id="Oxp-Mo-PgK"/>
+            </connections>
+            <point key="canvasLocation" x="251.90839694656486" y="80.281690140845072"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="o1" width="329" height="236"/>
+        <namedColor name="gray02">
+            <color red="0.21600000560283661" green="0.27799999713897705" blue="0.31000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

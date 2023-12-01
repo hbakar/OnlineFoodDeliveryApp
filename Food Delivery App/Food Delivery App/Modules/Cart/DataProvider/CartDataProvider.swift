@@ -13,4 +13,8 @@ final class CartDataProvider: CartDataProviderProtocol {
     func getAllFoodsFromCart(with url: String, params: Parameters, completion: @escaping (Result<CartFoodResponse, Error>) -> ()) {
         ServiceManager.shared.post(urlString: url, params: params, completion: completion)
     }
+    
+    func removeFoodFromCart(with url: String, params: Parameters, completion: @escaping (Result<CartResponse, Error>) -> ()) {
+        ServiceManager.shared.post(urlString: url, params: params, completion: completion)
+    }
 }

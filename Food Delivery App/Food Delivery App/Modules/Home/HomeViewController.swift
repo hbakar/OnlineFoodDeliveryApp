@@ -16,7 +16,34 @@ final class HomeViewController: UIViewController, tableV {
     
     @IBOutlet weak var searchText: UITextField!
     
+    @IBAction func btnSearchClicked(_ sender: Any) {
+      
+        if let txt = self.searchText.text {
+           
+            if txt.isEmpty == false {
+                viewModel?.isSearch = true
+                
+                if let lst = self.viewModel?.foodList.filter({$0.name?.lowercased().contains(txt.lowercased()) == true }) {
+                    viewModel?.searchList = lst
+                    
+                    DispatchQueue.main.async {
+                        self.homeTableView.reloadData()
+                    }
+                }
+            }
+            else {
+                viewModel?.isSearch = false
+            }
+        }
+    }
+    
     var viewModel: HomeViewModelProtocol?
+    
+    fileprivate func setNavigationBar() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu")?.withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(tests))
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "profile-circle")?.withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(tests))
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,18 +57,8 @@ final class HomeViewController: UIViewController, tableV {
         viewModel?.getCategoryItems()
         viewModel?.getAllFoods(with: Constants.allFoodsURL)
         
-        if navigationController != nil {
-            print("boş")
-            let view = UIImageView(image: UIImage(named: "menu"))
-            self.navigationController?.navigationItem.titleView = view
-        }
         
-     //   let view = UIImageView(image: UIImage(named: "menu")?.withRenderingMode(.alwaysOriginal))
-     //   self.navigationItem.titleView = view
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu")?.withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(tests))
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "profile-circle")?.withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(tests))
-     
+        setNavigationBar()
     }
     
     @objc func tests() {
@@ -117,7 +134,17 @@ extension HomeViewController {
             }
         case .productsTableItem:
             if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: FoodTableViewCell.self)) as? FoodTableViewCell {
-                cell.foodList = self.viewModel?.foodList ?? []
+                
+                if viewModel?.isSearch == true {
+                    
+                    cell.foodList = self.viewModel?.searchList ?? []
+                }
+                else {
+                    cell.foodList = self.viewModel?.foodList ?? []
+                }
+                
+                cell.viewModel = viewModel
+            
                 return cell
             }
         }
@@ -136,11 +163,6 @@ extension HomeViewController {
         }
         
         return self.homeTableView.frame.size.height - 200
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
     }
     
 }
@@ -174,11 +196,11 @@ extension HomeViewController: HomeViewModelDelegate {
         }
     }
     
-    
 }
 
 extension HomeViewController: UITextFieldDelegate {
-    func textFieldDidChangeSelection(_ textField: UITextField) {
-        print(textField.text)
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+      
     }
 }

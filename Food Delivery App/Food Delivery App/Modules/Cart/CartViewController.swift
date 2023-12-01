@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import Alamofire
 
 final class CartViewController: UIViewController {
-    
+  
     @IBOutlet weak var cartTableView: UITableView!
     
     var viewModel: CartViewModel?
@@ -16,13 +17,39 @@ final class CartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        configure()
+    }
+    
+    private func configure() {
+        setNavigationBar()
         registerTableViewCell()
         registerTableView()
-        
         viewModel?.delegate = self
+        getData()
+    }
+    
+    private func setNavigationBar() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu")?.withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(tests))
         
-        let params: [String: Any] = ["kullanici_adi":""] // kendi kullanıcı adım gelecek
-        viewModel?.getCartFoodList(with: Constants.allFoodsFromCartURL, params:params)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "profile-circle")?.withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(tests))
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    @objc func tests(){
+        
+    }
+
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        getData()
+    }
+    
+    private func getData() {
+        let param : [String: Any] = ["kullanici_adi":"huseyinbakar"]
+        viewModel?.getCartFoodList(with: Constants.allFoodsFromCartURL, params:param)
     }
     
     private func registerTableView() {
@@ -49,6 +76,8 @@ extension CartViewController: tableV {
         
         guard let model = self.viewModel?.cartFoodList[indexPath.row] else { return UITableViewCell() }
         
+        cell.delegate = self
+        cell.indexPath = indexPath
         cell.prepareForCartItem(with: model)
         return cell
     }
@@ -63,6 +92,32 @@ extension CartViewController: CartViewModelDelegate {
             }
         case .fetchFailed(let error):
             print(error.localizedDescription)
+        case .removeFood:
+            DispatchQueue.main.async {
+                self.cartTableView.reloadData()
+            }
+        case .removeFailed(let error):
+            print(error.localizedDescription)
         }
     }
+  
+}
+
+extension CartViewController: CartItemTableCellDelegate {
+    
+    func didClickedDeleteButton(indexPath: IndexPath) {
+        
+        guard let liste = viewModel?.cartFoodList else { return }
+        
+        let model = liste [indexPath.row]
+        
+        let id = Int(model.sepet_yemek_id ?? "0")
+        let params: [String: Any] = ["sepet_yemek_id": id, "kullanici_adi":"huseyinbakar"]
+        viewModel?.removeFoodFromCart(with: Constants.removeFromCartURL, params: params)
+      
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.6) {
+            self.getData()
+        }
+    }
+    
 }

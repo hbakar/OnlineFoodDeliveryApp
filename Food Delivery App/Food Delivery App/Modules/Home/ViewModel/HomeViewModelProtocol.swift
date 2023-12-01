@@ -14,6 +14,8 @@ protocol HomeViewModelProtocol {
     
     var foodList: [FoodsResponseResult] {get set}
     
+    var searchList: [FoodsResponseResult] {get set}
+    
     var isSearch: Bool {get set}
     
     var cardResponse: CartResponse? {get set}

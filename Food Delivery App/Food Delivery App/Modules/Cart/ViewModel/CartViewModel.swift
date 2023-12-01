@@ -15,6 +15,8 @@ final class CartViewModel: CartViewModelProtocol {
    
     var cartFoodList: [CartFoodResponseResult] = []
     
+    var cardResponse: CartResponse?
+        
     private let service: CartDataProviderProtocol
     
     init(service: CartDataProviderProtocol) {
@@ -33,6 +35,18 @@ final class CartViewModel: CartViewModelProtocol {
         }
     }
     
+    func removeFoodFromCart(with url: String, params: Parameters) {
+        service.removeFoodFromCart(with: url, params: params) { [weak self] results in
+            switch results {
+            case .success(let success):
+                self?.cardResponse = success
+                self?.delegate?.notify(.removeFood)
+            case .failure(let failure):
+                self?.delegate?.notify(.removeFailed(failure))
+            }
+        }
+    }
+    
 }
 
 protocol CartViewModelDelegate: AnyObject {
@@ -42,4 +56,6 @@ protocol CartViewModelDelegate: AnyObject {
 enum CartViewModelEvents {
     case didFetchCartList
     case fetchFailed(Error)
+    case removeFood
+    case removeFailed(Error)
 }

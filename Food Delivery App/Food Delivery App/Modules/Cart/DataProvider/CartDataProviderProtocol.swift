@@ -10,4 +10,6 @@ import Alamofire
 
 protocol CartDataProviderProtocol {
     func getAllFoodsFromCart(with url:String,params: Parameters, completion: @escaping(Result<CartFoodResponse, Error>) ->())
+    
+    func removeFoodFromCart(with url: String, params: Parameters, completion: @escaping (Result<CartResponse, Error>) -> ())
 }

@@ -46,6 +46,9 @@
                             </constraints>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" image="search-normal"/>
+                            <connections>
+                                <action selector="btnSearchClicked:" destination="-1" eventType="touchUpInside" id="Qt4-N1-E5H"/>
+                            </connections>
                         </button>
                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SSf-gW-PeJ">
                             <rect key="frame" x="48" y="2" width="257" height="44"/>

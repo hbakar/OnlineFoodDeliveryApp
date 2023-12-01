@@ -14,21 +14,20 @@ final class OrderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        registerTableViewCell()
-        registerTableView()
+     
+        setNavigationBar()
+    }
+   
+ 
+    
+    private func setNavigationBar() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu")?.withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(tests))
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "profile-circle")?.withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(tests))
     }
     
-    private func registerTableView() {
-        orderTableView.delegate = self
-        orderTableView.dataSource = self
-    }
-    
-    private func registerTableViewCell() {
-        /*
-         let nibName = String(describing: OrderItemTableCell.self)
-         let nib = UINib(nibName: nibName, bundle: .main)
-         orderTableView.register(nib, forCellReuseIdentifier: nibName)
-         */
+    @objc func tests(){
+        
     }
 
 }

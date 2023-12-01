@@ -17,7 +17,7 @@ final class ServiceManager {
         
         guard let url = URL(string: urlString) else {
             completion(.failure(AFError.invalidURL(url: urlString)))
-            return}
+            return }
         
         AF.request(url,encoding: JSONEncoding.default).validate().responseDecodable(of:T.self) { response in
             
@@ -27,31 +27,22 @@ final class ServiceManager {
             case .failure(let failure):
                 completion(.failure(failure))
             }
-            
         }
     }
     
-    func post<T: Codable>(urlString: String,params: Parameters, completion: @escaping(Result<T, Error>) ->()) {
-        
-        guard let url = URL(string: urlString) else {
-            completion(.failure(AFError.invalidURL(url: urlString)))
-            return}
-        
-        AF.request(url, method: .post, parameters: params, encoding: JSONEncoding.default)
-            .validate()
-            .responseData { response in
-                switch response.result {
-                case .success(let data):
-                    let decoder = JSONDecoder()
-                    do {
-                        let cevap = try decoder.decode(T.self, from: data)
-                        completion(.success(cevap))
-                    } catch {
-                        completion(.failure(error))
-                    }
-                case .failure(let error):
+    func post<T: Codable>(urlString: String,params: [String: Any], completion: @escaping(Result<T, Error>) ->())
+    {
+        AF.request(urlString,method: .post,parameters: params).response { response in
+            let decoder = JSONDecoder()
+            if let data = response.data {
+                do{
+                    let cevap = try decoder.decode(T.self, from: data)
+                    completion(.success(cevap))
+                }catch{
                     completion(.failure(error))
                 }
             }
+            
+        }
     }
 }

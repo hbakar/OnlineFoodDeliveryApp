@@ -13,7 +13,7 @@ protocol CartItemTableCellDelegate: AnyObject {
 }
 
 class CartItemTableCell: UITableViewCell {
-
+   
     @IBOutlet private weak var cartImage: UIImageView!
     
     @IBOutlet private weak var cartTitle: UILabel!
@@ -41,4 +41,7 @@ class CartItemTableCell: UITableViewCell {
         cartImage.kf.setImage(with: url)
     }
     
+    @IBAction func buttonRemoveClicked(_ sender: Any) {
+       self.delegate?.didClickedDeleteButton(indexPath: indexPath!)
+    }
 }

@@ -15,4 +15,6 @@ protocol CartViewModelProtocol {
     var cartFoodList: [CartFoodResponseResult] {get set}
     
     func getCartFoodList(with url:String, params: Parameters)
+    
+    func removeFoodFromCart(with url:String, params: Parameters)
 }

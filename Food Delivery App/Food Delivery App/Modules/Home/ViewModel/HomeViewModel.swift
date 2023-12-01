@@ -9,7 +9,8 @@ import Foundation
 import Alamofire
 
 class HomeViewModel: HomeViewModelProtocol {
-  
+    
+    var searchList: [FoodsResponseResult] = []
     
     var sliderList: [Slider] = []
     
@@ -48,10 +49,11 @@ class HomeViewModel: HomeViewModelProtocol {
             switch results {
             case .success(let success):
                 if let list = success.yemekler {
+                    
                     self?.foodList = list
-                   
                     self?.homeTableItems.append(.productsTableItem)
                     self?.delegate?.notify(.didFetchFoodsList)
+                    
                 }
             case .failure(let failure):
                 self?.delegate?.notify(.fetchFailedFoods(failure))

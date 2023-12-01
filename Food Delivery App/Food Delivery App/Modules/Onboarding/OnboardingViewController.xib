@@ -71,7 +71,7 @@
                         <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </buttonConfiguration>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="25"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="12"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="btnNextClicked:" destination="-1" eventType="touchUpInside" id="2xw-on-gqd"/>

@@ -10,12 +10,11 @@ import UIKit
 
 
 class FoodTableViewCell: UITableViewCell, FoodItemCellDelegate {
-   
-    func didClicked(indexPath: IndexPath) {
-        print("ürün \(indexPath)")
-    }
+    
+    
     
     @IBOutlet weak var collectionView: UICollectionView!
+    var viewModel: HomeViewModelProtocol?
     
     var foodList: [FoodsResponseResult]?
     
@@ -53,6 +52,19 @@ class FoodTableViewCell: UITableViewCell, FoodItemCellDelegate {
         super.setSelected(selected, animated: animated)
     }
     
+    func didClicked(indexPath: IndexPath) {
+        // print("ürün \(indexPath)")
+        guard let list = self.foodList else { return }
+        let model = list[indexPath.row]
+        let name = model.name ?? ""
+        let img = model.imagePath ?? "" //Constants.getFoodImage.appending(model.imagePath ?? "")
+        let price = Int(model.price ?? "0") ?? 0
+        let amount = 1
+        let params: [String: Any] = ["yemek_adi":name,"yemek_resim_adi":img,"yemek_fiyat":price,"yemek_siparis_adet":amount,"kullanici_adi":"huseyinbakar"]
+    
+        viewModel?.addToCart(with: Constants.addToCartURL, params: params)
+    }
+    
 }
 
 extension FoodTableViewCell: collectionV {
@@ -62,10 +74,11 @@ extension FoodTableViewCell: collectionV {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: FoodItemCell.self), for: indexPath) as? FoodItemCell else { return UICollectionViewCell()}
         
-        if let model = self.foodList?[indexPath.row] {
-            cell.prepareForFood(with: model)
+        if let list = self.foodList {
+            cell.prepareForFood(with: list[indexPath.row])
             cell.foodDelegate = self
             cell.indexPath = indexPath
         }

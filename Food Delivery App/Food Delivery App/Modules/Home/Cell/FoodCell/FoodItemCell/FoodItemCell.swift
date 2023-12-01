@@ -33,6 +33,7 @@ class FoodItemCell: UICollectionViewCell {
     }
     
     func configure() {
+        
         foodImage.clipsToBounds = true
         foodImage.layer.cornerRadius = 12
         
