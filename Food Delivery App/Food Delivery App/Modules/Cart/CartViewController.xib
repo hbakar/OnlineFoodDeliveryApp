@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -21,22 +22,35 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Svo-Nz-1rW">
-                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                    <rect key="frame" x="0.0" y="59" width="393" height="599"/>
                     <inset key="separatorInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NPj-w4-wXb">
+                    <rect key="frame" x="0.0" y="658" width="393" height="160"/>
+                    <color key="backgroundColor" name="gray10"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="160" id="0XU-bb-KWU"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="Svo-Nz-1rW" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="1O5-fA-VaX"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Svo-Nz-1rW" secondAttribute="bottom" id="N0N-7z-05K"/>
+                <constraint firstItem="NPj-w4-wXb" firstAttribute="top" secondItem="Svo-Nz-1rW" secondAttribute="bottom" id="Ox8-Bu-vSp"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Svo-Nz-1rW" secondAttribute="trailing" id="QtI-s7-Zuq"/>
+                <constraint firstItem="NPj-w4-wXb" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Zwy-Xj-fwB"/>
+                <constraint firstAttribute="bottomMargin" secondItem="NPj-w4-wXb" secondAttribute="bottom" id="cTY-Hf-0IF"/>
                 <constraint firstItem="Svo-Nz-1rW" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="d6p-v2-k9G"/>
+                <constraint firstItem="NPj-w4-wXb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="sQv-5j-cie"/>
             </constraints>
-            <point key="canvasLocation" x="132" y="21"/>
+            <point key="canvasLocation" x="130.53435114503816" y="20.422535211267608"/>
         </view>
     </objects>
     <resources>
+        <namedColor name="gray10">
+            <color red="0.81199997663497925" green="0.84700000286102295" blue="0.86299997568130493" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

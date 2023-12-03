@@ -9,6 +9,10 @@ import UIKit
 
 final class FoodsViewController: UIViewController, FoodItemCellDelegate {
    
+    
+  
+    
+   
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var foodsCollectionView: UICollectionView!
     
@@ -28,8 +32,7 @@ final class FoodsViewController: UIViewController, FoodItemCellDelegate {
         configure()
     }
     
-    func didClicked(indexPath: IndexPath) {
-        
+    func didClicked(indexPath: IndexPath, with amount: Int) {
         if let model = viewModel?.foodList[indexPath.row] {
             
             if let name = model.name, let imageName = model.imagePath, let price = model.price {
@@ -41,9 +44,15 @@ final class FoodsViewController: UIViewController, FoodItemCellDelegate {
                     "kullanici_adi": "huseyin_bakar"
                 ]
                 
+                print("amount: \(amount)")
+                
                 self.viewModel?.addToCart(with: Constants.addToCartURL, params: params)
             }
         }
+    }
+    
+    func addToFavorites(indexPath: IndexPath) {
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -125,7 +134,9 @@ extension FoodsViewController: FoodViewModelDelegate {
         case .fetchFailed(let error):
             print(error.localizedDescription as! Error)
         case .didAddToCart:
+            
             print(viewModel?.cardResponse)
+            
         case .addToCartFailed(let error):
             print("\(error.localizedDescription)")
         }

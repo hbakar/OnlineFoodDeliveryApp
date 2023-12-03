@@ -57,9 +57,16 @@ final class HomeViewController: UIViewController, tableV {
         viewModel?.getCategoryItems()
         viewModel?.getAllFoods(with: Constants.allFoodsURL)
         
-        
         setNavigationBar()
+        
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let params : [String: Any] = ["kullanici_adi": "huseyinbakar"]
+        viewModel?.getCartFoodList(with: Constants.allFoodsFromCartURL, params: params)
+    }
+ 
     
     @objc func tests() {
         print("test")
@@ -70,7 +77,7 @@ final class HomeViewController: UIViewController, tableV {
     }
     
     private func setupTableViewCell() {
-        let nibName = String(describing: HomeTableItemSliderCell.self)
+        let nibName = String(describing: HomeTableItemSliderCell.self)       
         let nib = UINib(nibName: nibName, bundle: .main)
         homeTableView.register(nib, forCellReuseIdentifier: nibName)
         
@@ -90,6 +97,54 @@ final class HomeViewController: UIViewController, tableV {
     private func setupTableView() {
         homeTableView.delegate = self
         homeTableView.dataSource = self
+    }
+    
+    private func getCartItemCount() {
+        
+        DispatchQueue.main.async {
+            if let cnt = self.tabBarController?.tabBar.items {
+               
+                var count = 0
+                if let cnt2 = cnt[2] as? UITabBarItem {
+                    if UserDefaults.standard.integer(forKey: "cookieFoodCount") > 0 {
+                       UserDefaults.standard.integer(forKey: "cookieFoodCount")
+                        UserDefaults.standard.setValue(count, forKey: "cookieFoodCount")
+                        Singleton.shared.cartItemCount = count
+                    }
+                    else {
+                        Singleton.shared.cartItemCount = count
+                        UserDefaults.standard.setValue(count, forKey: "cookieFoodCount")
+                    }
+                  
+                   // Singleton.shared.cartItemCount = Singleton.shared.cartItemCount + 1
+                    cnt2.badgeValue = String(Singleton.shared.cartItemCount)
+                }
+            }
+        }
+        
+    }
+    
+    private func setCartItemCount() {
+        
+        DispatchQueue.main.async {
+            if let cnt = self.tabBarController?.tabBar.items {
+               
+                var count = 0
+                if let cnt2 = cnt[2] as? UITabBarItem {
+                    if UserDefaults.standard.integer(forKey: "cookieFoodCount") > 0 {
+                       UserDefaults.standard.integer(forKey: "cookieFoodCount")
+                        UserDefaults.standard.setValue(count, forKey: "cookieFoodCount")
+                        Singleton.shared.cartItemCount = count
+                    }
+                    else {
+                        Singleton.shared.cartItemCount = Singleton.shared.cartItemCount + 1
+                        UserDefaults.standard.setValue(count, forKey: "cookieFoodCount")
+                    }
+                    cnt2.badgeValue = String(Singleton.shared.cartItemCount)
+                }
+            }
+        }
+        
     }
     
 }
@@ -144,7 +199,7 @@ extension HomeViewController {
                 }
                 
                 cell.viewModel = viewModel
-            
+                
                 return cell
             }
         }
@@ -176,6 +231,7 @@ extension HomeViewController: HomeViewModelDelegate {
                 self.homeTableView.reloadData()
             }
         case .fetchFailedFoods(let error):
+            
             print(error.localizedDescription)
         case .didFetchSliderList:
             DispatchQueue.main.async {
@@ -190,8 +246,15 @@ extension HomeViewController: HomeViewModelDelegate {
         case .fetchFailedCategory(let error):
             print(error.localizedDescription)
         case .didAddToCart:
-            print(123)
+            setCartItemCount()
         case .addToCartFailed(let error):
+            print(error.localizedDescription)
+        case .didFetchCartFood:
+            DispatchQueue.main.async {
+                let count = self.viewModel?.cartFoodList.count ?? 0
+                UserDefaults.standard.setValue(count, forKey: "cookieFoodCount")
+            }
+        case .foodCartFetchFailed(let error):
             print(error.localizedDescription)
         }
     }

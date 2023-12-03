@@ -9,14 +9,14 @@ import UIKit
 import Alamofire
 
 final class CartViewController: UIViewController {
-  
+    
     @IBOutlet weak var cartTableView: UITableView!
     
     var viewModel: CartViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configure()
     }
     
@@ -39,7 +39,7 @@ final class CartViewController: UIViewController {
     @objc func tests(){
         
     }
-
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -62,7 +62,7 @@ final class CartViewController: UIViewController {
         let nib = UINib(nibName: nibName, bundle: .main)
         cartTableView.register(nib, forCellReuseIdentifier: nibName)
     }
-
+    
 }
 
 extension CartViewController: tableV {
@@ -84,13 +84,31 @@ extension CartViewController: tableV {
 }
 
 extension CartViewController: CartViewModelDelegate {
+    
+    private func setCookie() {
+        if UserDefaults.standard.integer(forKey: "cookieFoodCount") > 0 {
+            Singleton.shared.cartItemCount = UserDefaults.standard.integer(forKey: "cookieFoodCount")
+        }
+        else {
+            let count = (self.viewModel?.cartFoodList.count ?? 0) + 1
+            UserDefaults.standard.set(count, forKey: "cookieFoodCount")
+            Singleton.shared.cartItemCount = count
+        }
+    }
+    
     func notify(_ events: CartViewModelEvents) {
         switch events {
+            
         case .didFetchCartList:
+            
+            setCookie()
+            
             DispatchQueue.main.async {
+                self.cartTableView.dataSource = self
                 self.cartTableView.reloadData()
             }
         case .fetchFailed(let error):
+            self.cartTableView.dataSource = nil
             print(error.localizedDescription)
         case .removeFood:
             DispatchQueue.main.async {
@@ -100,7 +118,7 @@ extension CartViewController: CartViewModelDelegate {
             print(error.localizedDescription)
         }
     }
-  
+    
 }
 
 extension CartViewController: CartItemTableCellDelegate {
@@ -114,8 +132,8 @@ extension CartViewController: CartItemTableCellDelegate {
         let id = Int(model.sepet_yemek_id ?? "0")
         let params: [String: Any] = ["sepet_yemek_id": id, "kullanici_adi":"huseyinbakar"]
         viewModel?.removeFoodFromCart(with: Constants.removeFromCartURL, params: params)
-      
-        DispatchQueue.main.asyncAfter(deadline: .now()+0.6) {
+        
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.4) {
             self.getData()
         }
     }

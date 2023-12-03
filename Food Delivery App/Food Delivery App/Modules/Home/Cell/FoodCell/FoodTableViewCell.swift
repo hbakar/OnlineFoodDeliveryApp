@@ -11,8 +11,6 @@ import UIKit
 
 class FoodTableViewCell: UITableViewCell, FoodItemCellDelegate {
     
-    
-    
     @IBOutlet weak var collectionView: UICollectionView!
     var viewModel: HomeViewModelProtocol?
     
@@ -52,17 +50,21 @@ class FoodTableViewCell: UITableViewCell, FoodItemCellDelegate {
         super.setSelected(selected, animated: animated)
     }
     
-    func didClicked(indexPath: IndexPath) {
+    func didClicked(indexPath: IndexPath,with amount: Int) {
         // print("ürün \(indexPath)")
         guard let list = self.foodList else { return }
         let model = list[indexPath.row]
         let name = model.name ?? ""
         let img = model.imagePath ?? "" //Constants.getFoodImage.appending(model.imagePath ?? "")
         let price = Int(model.price ?? "0") ?? 0
-        let amount = 1
+        let amount = amount
         let params: [String: Any] = ["yemek_adi":name,"yemek_resim_adi":img,"yemek_fiyat":price,"yemek_siparis_adet":amount,"kullanici_adi":"huseyinbakar"]
-    
+        
         viewModel?.addToCart(with: Constants.addToCartURL, params: params)
+    }
+    
+    func addToFavorites(indexPath: IndexPath) {
+        
     }
     
 }

@@ -14,6 +14,8 @@ protocol HomeViewModelProtocol {
     
     var foodList: [FoodsResponseResult] {get set}
     
+    var cartFoodList: [CartFoodResponseResult] {get set}
+    
     var searchList: [FoodsResponseResult] {get set}
     
     var isSearch: Bool {get set}
@@ -31,6 +33,8 @@ protocol HomeViewModelProtocol {
     func getCategoryItems()
     
     func getAllFoods(with url: String) 
+    
+    func getCartFoodList(with url:String, params: Parameters)
     
     func addToCart(with url: String, params: [String: Any])
 }

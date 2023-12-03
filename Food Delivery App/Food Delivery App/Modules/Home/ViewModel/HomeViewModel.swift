@@ -10,6 +10,8 @@ import Alamofire
 
 class HomeViewModel: HomeViewModelProtocol {
     
+    var cartFoodList: [CartFoodResponseResult] = []
+    
     var searchList: [FoodsResponseResult] = []
     
     var sliderList: [Slider] = []
@@ -30,6 +32,19 @@ class HomeViewModel: HomeViewModelProtocol {
     
     init(service: HomeDataProviderProtocol) {
         self.service = service
+    }
+    
+    func getCartFoodList(with url: String, params: Alamofire.Parameters) {
+        let params = ["kullanici_adi":"huseyinbakar"]
+        service.getAllFoodsFromCart(with: url, params: params) { [weak self] results in
+            switch results {
+            case .success(let success):
+                self?.cartFoodList = success.sepet_yemekler ?? []
+                self?.delegate?.notify(.didFetchCartFood)
+            case .failure(let failure):
+                self?.delegate?.notify(.foodCartFetchFailed(failure))
+            }
+        }
     }
     
     func addToCart(with url: String, params: [String: Any]) {
@@ -95,6 +110,8 @@ enum HomeViewModelEvents {
     case fetchFailedCategory(Error)
     case didAddToCart
     case addToCartFailed(Error)
+    case didFetchCartFood
+    case foodCartFetchFailed(Error)
 }
 
 enum HomeTableItem {

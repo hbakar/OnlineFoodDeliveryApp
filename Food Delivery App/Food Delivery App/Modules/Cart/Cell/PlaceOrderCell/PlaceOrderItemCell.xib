@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Inter-Bold.ttf">
+            <string>Inter-Bold</string>
+        </array>
+        <array key="Inter-Medium.ttf">
+            <string>Inter-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="160" id="KGk-i7-Jjw" customClass="PlaceOrderItemCell" customModule="Food_Delivery_App" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="315" height="160"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="315" height="160"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="tlg-F3-Rhv">
+                        <rect key="frame" x="16" y="16" width="283" height="76"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7kA-BR-tlI">
+                                <rect key="frame" x="0.0" y="0.0" width="283" height="14.666666666666666"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtotal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hie-Ju-Mhd">
+                                        <rect key="frame" x="0.0" y="0.0" width="158" height="14.666666666666666"/>
+                                        <fontDescription key="fontDescription" name="Inter-Medium" family="Inter" pointSize="12"/>
+                                        <color key="textColor" name="gray01"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gaz-uo-axI">
+                                        <rect key="frame" x="158" y="0.0" width="125" height="14.666666666666666"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="125" id="Z1Q-oY-mjx"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Inter-Medium" family="Inter" pointSize="12"/>
+                                        <color key="textColor" name="gray06"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oH0-BD-EVc">
+                                <rect key="frame" x="0.0" y="30.666666666666668" width="283" height="14.666666666666668"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delivery Fee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DmS-Nk-4vP">
+                                        <rect key="frame" x="0.0" y="0.0" width="158" height="14.666666666666666"/>
+                                        <fontDescription key="fontDescription" name="Inter-Medium" family="Inter" pointSize="12"/>
+                                        <color key="textColor" name="gray01"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UU2-J3-7rt">
+                                        <rect key="frame" x="158" y="0.0" width="125" height="14.666666666666666"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="125" id="QMQ-Gi-xM3"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Inter-Medium" family="Inter" pointSize="12"/>
+                                        <color key="textColor" name="gray06"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pvG-IK-APH">
+                                <rect key="frame" x="0.0" y="61.333333333333321" width="283" height="14.666666666666664"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order Total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RpJ-l0-6MG">
+                                        <rect key="frame" x="0.0" y="0.0" width="158" height="14.666666666666666"/>
+                                        <fontDescription key="fontDescription" name="Inter-Bold" family="Inter" pointSize="12"/>
+                                        <color key="textColor" name="gray01"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W4V-Q3-xSz">
+                                        <rect key="frame" x="158" y="0.0" width="125" height="14.666666666666666"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="125" id="u2C-56-yrT"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Inter-Bold" family="Inter" pointSize="12"/>
+                                        <color key="textColor" name="gray06"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                    </stackView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M9Q-er-p9J">
+                        <rect key="frame" x="16" y="108" width="283" height="44"/>
+                        <color key="backgroundColor" name="tertiaryColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="44" id="bGf-po-Ad2"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title="Place Order">
+                            <fontDescription key="titleFontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
+                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </buttonConfiguration>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="22"/>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="buttonPlaceOrderClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="oXm-lT-7Rh"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" name="gray10"/>
+                <constraints>
+                    <constraint firstItem="M9Q-er-p9J" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="A7r-Yp-T8B"/>
+                    <constraint firstAttribute="trailing" secondItem="M9Q-er-p9J" secondAttribute="trailing" constant="16" id="Ajp-wr-NZz"/>
+                    <constraint firstItem="tlg-F3-Rhv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="F7N-k8-Vwf"/>
+                    <constraint firstAttribute="bottom" secondItem="M9Q-er-p9J" secondAttribute="bottom" constant="8" id="FN6-Cl-J25"/>
+                    <constraint firstItem="tlg-F3-Rhv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="L5L-tr-bqJ"/>
+                    <constraint firstAttribute="trailing" secondItem="tlg-F3-Rhv" secondAttribute="trailing" constant="16" id="Unx-AI-JWi"/>
+                    <constraint firstItem="M9Q-er-p9J" firstAttribute="top" secondItem="tlg-F3-Rhv" secondAttribute="bottom" constant="16" id="cSQ-H0-OrL"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <point key="canvasLocation" x="135.1145038167939" y="39.436619718309863"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="gray01">
+            <color red="0.14900000393390656" green="0.19599999487400055" blue="0.2199999988079071" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="gray06">
+            <color red="0.47099998593330383" green="0.56499999761581421" blue="0.6119999885559082" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="gray10">
+            <color red="0.81199997663497925" green="0.84700000286102295" blue="0.86299997568130493" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="tertiaryColor">
+            <color red="0.9570000171661377" green="0.41200000047683716" blue="0.016000000759959221" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

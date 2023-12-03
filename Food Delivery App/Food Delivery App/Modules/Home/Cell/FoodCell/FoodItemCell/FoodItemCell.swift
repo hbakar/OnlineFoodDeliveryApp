@@ -9,12 +9,20 @@ import UIKit
 import Kingfisher
 
 protocol FoodItemCellDelegate: AnyObject {
-    func didClicked(indexPath: IndexPath)
+    func didClicked(indexPath: IndexPath,with amount: Int)
+    
+    func addToFavorites(indexPath: IndexPath)
 }
 
 class FoodItemCell: UICollectionViewCell {
     
+    @IBOutlet weak var buttonFavorites: UIButton!
+    
     @IBOutlet private weak var titleLabel: UILabel!
+    
+    @IBOutlet weak var amountTextField: UITextField!
+    
+    @IBOutlet weak var amountStepper: UIStepper!
     
     @IBOutlet private weak var priceLabel: UILabel!
     
@@ -24,12 +32,18 @@ class FoodItemCell: UICollectionViewCell {
     
     weak var foodDelegate: FoodItemCellDelegate?
     
+    var amount: Int = 0
+    
     var indexPath: IndexPath?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         configure()
+    }
+    
+    @IBAction func buttonFavoritesClicked(_ sender: Any) {
+        self.foodDelegate?.addToFavorites(indexPath: indexPath!)
     }
     
     func configure() {
@@ -62,11 +76,18 @@ class FoodItemCell: UICollectionViewCell {
         }
         
         titleLabel.text = model.name ?? ""
-        priceLabel.text = model.price?.appending(" ₺") ?? ""
+        priceLabel.text = (model.price ?? "").appending(" ₺")
+    }
+    
+    @IBAction func amountStepperChanged(_ sender: Any) {
+        amount = Int((sender as? UIStepper)?.value ?? 0)
+        self.amountTextField.text = String(amount)
     }
     
     @IBAction func buttonAddClicked(_ sender: Any) {
-        self.foodDelegate?.didClicked(indexPath: indexPath!)
+        
+        self.foodDelegate?.didClicked(indexPath: indexPath!,with: amount)
+        
     }
     
 }

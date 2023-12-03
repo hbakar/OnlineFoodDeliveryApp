@@ -30,7 +30,6 @@ final class DetailViewController: UIViewController {
     }
     
     private func setupTableViewCell() {
-        
         let nibName = String(describing: DetailItemImageViewCell.self)
         let nib = UINib(nibName: nibName, bundle: .main)
         detailTableView.register(nib, forCellReuseIdentifier: nibName)

@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Alamofire
 
 
 final class CartViewModel: CartViewModelProtocol {
@@ -23,7 +22,7 @@ final class CartViewModel: CartViewModelProtocol {
         self.service = service
     }
     
-    func getCartFoodList(with url: String, params: Parameters) {
+    func getCartFoodList(with url: String, params: [String: Any]) {
         service.getAllFoodsFromCart(with: url, params: params) { [weak self] results in
             switch results {
             case .success(let success):
@@ -35,7 +34,7 @@ final class CartViewModel: CartViewModelProtocol {
         }
     }
     
-    func removeFoodFromCart(with url: String, params: Parameters) {
+    func removeFoodFromCart(with url: String, params: [String: Any]) {
         service.removeFoodFromCart(with: url, params: params) { [weak self] results in
             switch results {
             case .success(let success):
