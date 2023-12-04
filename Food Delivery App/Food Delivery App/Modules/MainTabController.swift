@@ -78,6 +78,8 @@ class MainTabController: UITabBarController,UITabBarControllerDelegate {
         
         let profileViewController = ProfileViewController(nibName: String(describing: ProfileViewController.self), bundle: .main)
         
+        profileViewController.viewModel = ProfileViewModel()
+        
         let navigationControllerHome: UINavigationController = templateNavigationController(title: "Home", image:UIImage(named:"home")!,rootViewController: homeViewController)
         
         let navigationControllerOrder: UINavigationController = templateNavigationController(title: "Order", image:UIImage(named:"task-square")!,rootViewController: orderViewController)

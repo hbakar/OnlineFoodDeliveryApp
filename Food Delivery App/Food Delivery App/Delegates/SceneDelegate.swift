@@ -18,6 +18,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let onboardingViewController = OnboardingViewController(nibName: String(describing: OnboardingViewController.self), bundle: .main)
         onboardingViewController.viewModel = OnboardingViewModel()
+        
+        if let userDefaults = UserDefaults.standard.value(forKey: "isDark") as? Bool, userDefaults {
+            window?.overrideUserInterfaceStyle = .dark
+        } else {
+            window?.overrideUserInterfaceStyle = .light
+        }
         window?.rootViewController = onboardingViewController  // MainTabController()
         window?.makeKeyAndVisible()
     }

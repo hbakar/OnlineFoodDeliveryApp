@@ -9,10 +9,6 @@ import UIKit
 
 final class FoodsViewController: UIViewController, FoodItemCellDelegate {
    
-    
-  
-    
-   
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var foodsCollectionView: UICollectionView!
     
@@ -40,7 +36,7 @@ final class FoodsViewController: UIViewController, FoodItemCellDelegate {
                     "yemek_adi": name,
                     "yemek_resim_adi": imageName,
                     "yemek_fiyat": price,
-                    "yemek_siparis_adet":1,
+                    "yemek_siparis_adet":amount,
                     "kullanici_adi": "huseyin_bakar"
                 ]
                 
@@ -51,7 +47,11 @@ final class FoodsViewController: UIViewController, FoodItemCellDelegate {
         }
     }
     
-    func addToFavorites(indexPath: IndexPath) {
+    func addToFavorites(with indexPath: IndexPath) {
+        
+    }
+    
+    func addToCart(with indexPath: IndexPath) {
         
     }
     
@@ -105,7 +105,6 @@ extension FoodsViewController: collectionV {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: FoodItemCell.self), for: indexPath) as? FoodItemCell else { return UICollectionViewCell() }
               
         if viewModel?.isSearch == true {
-           
             if let lst = viewModel?.searchList {
                 cell.prepareForFood(with: lst[indexPath.row])
             }
@@ -120,7 +119,6 @@ extension FoodsViewController: collectionV {
         cell.foodDelegate = self
         return cell
     }
-    
 }
 
 extension FoodsViewController: FoodViewModelDelegate {

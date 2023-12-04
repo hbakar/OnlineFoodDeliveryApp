@@ -189,17 +189,13 @@ extension HomeViewController {
             }
         case .productsTableItem:
             if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: FoodTableViewCell.self)) as? FoodTableViewCell {
-                
                 if viewModel?.isSearch == true {
-                    
                     cell.foodList = self.viewModel?.searchList ?? []
                 }
                 else {
                     cell.foodList = self.viewModel?.foodList ?? []
                 }
-                
                 cell.viewModel = viewModel
-                
                 return cell
             }
         }

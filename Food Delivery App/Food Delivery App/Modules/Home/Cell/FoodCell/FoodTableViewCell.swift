@@ -10,6 +10,8 @@ import UIKit
 
 
 class FoodTableViewCell: UITableViewCell, FoodItemCellDelegate {
+  
+    
     
     @IBOutlet weak var collectionView: UICollectionView!
     var viewModel: HomeViewModelProtocol?
@@ -63,10 +65,13 @@ class FoodTableViewCell: UITableViewCell, FoodItemCellDelegate {
         viewModel?.addToCart(with: Constants.addToCartURL, params: params)
     }
     
-    func addToFavorites(indexPath: IndexPath) {
+    func addToFavorites(with indexPath: IndexPath) {
         
     }
     
+    func addToCart(with indexPath: IndexPath) {
+        
+    }
 }
 
 extension FoodTableViewCell: collectionV {

@@ -11,7 +11,9 @@ import Kingfisher
 protocol FoodItemCellDelegate: AnyObject {
     func didClicked(indexPath: IndexPath,with amount: Int)
     
-    func addToFavorites(indexPath: IndexPath)
+    func addToCart(with indexPath: IndexPath)
+    
+    func addToFavorites(with indexPath: IndexPath)
 }
 
 class FoodItemCell: UICollectionViewCell {
@@ -43,7 +45,7 @@ class FoodItemCell: UICollectionViewCell {
     }
     
     @IBAction func buttonFavoritesClicked(_ sender: Any) {
-        self.foodDelegate?.addToFavorites(indexPath: indexPath!)
+        self.foodDelegate?.addToFavorites(with: indexPath!)
     }
     
     func configure() {

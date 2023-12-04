@@ -32,6 +32,20 @@
 		DC72BCAE2B1482240017D671 /* CardFoodResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC72BCAD2B1482240017D671 /* CardFoodResponse.swift */; };
 		DC72BCB02B1485870017D671 /* CartViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC72BCAF2B1485870017D671 /* CartViewModelProtocol.swift */; };
 		DC72BCB22B1485D40017D671 /* CartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC72BCB12B1485D40017D671 /* CartViewModel.swift */; };
+		DC777E232B1DE96E002C474D /* ProfileTableItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC777E212B1DE96E002C474D /* ProfileTableItemCell.swift */; };
+		DC777E242B1DE96E002C474D /* ProfileTableItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC777E222B1DE96E002C474D /* ProfileTableItemCell.xib */; };
+		DC777E262B1DEC73002C474D /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC777E252B1DEC73002C474D /* Profile.swift */; };
+		DC777E292B1DEDC5002C474D /* ProfileViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC777E282B1DEDC5002C474D /* ProfileViewModelProtocol.swift */; };
+		DC777E2B2B1DEF7C002C474D /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC777E2A2B1DEF7C002C474D /* ProfileViewModel.swift */; };
+		DC777E2F2B1DF926002C474D /* MyFavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC777E2D2B1DF926002C474D /* MyFavoritesViewController.swift */; };
+		DC777E302B1DF926002C474D /* MyFavoritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC777E2E2B1DF926002C474D /* MyFavoritesViewController.xib */; };
+		DC777E342B1E022A002C474D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC777E322B1E022A002C474D /* SettingsViewController.swift */; };
+		DC777E352B1E022A002C474D /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC777E332B1E022A002C474D /* SettingsViewController.xib */; };
+		DC777E392B1E02ED002C474D /* SettingsDarkModeItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC777E372B1E02ED002C474D /* SettingsDarkModeItemCell.swift */; };
+		DC777E3A2B1E02ED002C474D /* SettingsDarkModeItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC777E382B1E02ED002C474D /* SettingsDarkModeItemCell.xib */; };
+		DC777E3D2B1E046E002C474D /* SettingsViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC777E3C2B1E046E002C474D /* SettingsViewModelProtocol.swift */; };
+		DC777E3F2B1E048C002C474D /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC777E3E2B1E048C002C474D /* SettingsModel.swift */; };
+		DC777E412B1E0A93002C474D /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC777E402B1E0A93002C474D /* SettingsViewModel.swift */; };
 		DCC51B842B0FC4EC0059DACF /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC51B832B0FC4EC0059DACF /* MainTabController.swift */; };
 		DCC51B8B2B0FCECB0059DACF /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC51B892B0FCECB0059DACF /* CartViewController.swift */; };
 		DCC51B8C2B0FCECB0059DACF /* CartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCC51B8A2B0FCECB0059DACF /* CartViewController.xib */; };
@@ -123,6 +137,20 @@
 		DC72BCAD2B1482240017D671 /* CardFoodResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFoodResponse.swift; sourceTree = "<group>"; };
 		DC72BCAF2B1485870017D671 /* CartViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModelProtocol.swift; sourceTree = "<group>"; };
 		DC72BCB12B1485D40017D671 /* CartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModel.swift; sourceTree = "<group>"; };
+		DC777E212B1DE96E002C474D /* ProfileTableItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableItemCell.swift; sourceTree = "<group>"; };
+		DC777E222B1DE96E002C474D /* ProfileTableItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileTableItemCell.xib; sourceTree = "<group>"; };
+		DC777E252B1DEC73002C474D /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		DC777E282B1DEDC5002C474D /* ProfileViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelProtocol.swift; sourceTree = "<group>"; };
+		DC777E2A2B1DEF7C002C474D /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		DC777E2D2B1DF926002C474D /* MyFavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFavoritesViewController.swift; sourceTree = "<group>"; };
+		DC777E2E2B1DF926002C474D /* MyFavoritesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyFavoritesViewController.xib; sourceTree = "<group>"; };
+		DC777E322B1E022A002C474D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		DC777E332B1E022A002C474D /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		DC777E372B1E02ED002C474D /* SettingsDarkModeItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDarkModeItemCell.swift; sourceTree = "<group>"; };
+		DC777E382B1E02ED002C474D /* SettingsDarkModeItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsDarkModeItemCell.xib; sourceTree = "<group>"; };
+		DC777E3C2B1E046E002C474D /* SettingsViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModelProtocol.swift; sourceTree = "<group>"; };
+		DC777E3E2B1E048C002C474D /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
+		DC777E402B1E0A93002C474D /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		DCC51B832B0FC4EC0059DACF /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
 		DCC51B892B0FCECB0059DACF /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 		DCC51B8A2B0FCECB0059DACF /* CartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartViewController.xib; sourceTree = "<group>"; };
@@ -246,6 +274,8 @@
 				DC72BCAD2B1482240017D671 /* CardFoodResponse.swift */,
 				DCE7AA502B161909006099BD /* Category.swift */,
 				DC31C38B2B1A40EE001B86F7 /* Singleton.swift */,
+				DC777E252B1DEC73002C474D /* Profile.swift */,
+				DC777E3E2B1E048C002C474D /* SettingsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -298,6 +328,62 @@
 			);
 			name = Cell;
 			path = "Cellü";
+			sourceTree = "<group>";
+		};
+		DC777E202B1DE95E002C474D /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				DC777E212B1DE96E002C474D /* ProfileTableItemCell.swift */,
+				DC777E222B1DE96E002C474D /* ProfileTableItemCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		DC777E272B1DEDB1002C474D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				DC777E282B1DEDC5002C474D /* ProfileViewModelProtocol.swift */,
+				DC777E2A2B1DEF7C002C474D /* ProfileViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		DC777E2C2B1DF910002C474D /* MyFavorites */ = {
+			isa = PBXGroup;
+			children = (
+				DC777E2D2B1DF926002C474D /* MyFavoritesViewController.swift */,
+				DC777E2E2B1DF926002C474D /* MyFavoritesViewController.xib */,
+			);
+			path = MyFavorites;
+			sourceTree = "<group>";
+		};
+		DC777E312B1E021B002C474D /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				DC777E3B2B1E0461002C474D /* ViewModel */,
+				DC777E362B1E02B0002C474D /* Cell */,
+				DC777E322B1E022A002C474D /* SettingsViewController.swift */,
+				DC777E332B1E022A002C474D /* SettingsViewController.xib */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		DC777E362B1E02B0002C474D /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				DC777E372B1E02ED002C474D /* SettingsDarkModeItemCell.swift */,
+				DC777E382B1E02ED002C474D /* SettingsDarkModeItemCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		DC777E3B2B1E0461002C474D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				DC777E3C2B1E046E002C474D /* SettingsViewModelProtocol.swift */,
+				DC777E402B1E0A93002C474D /* SettingsViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		DCB820DB2B115C0C00C99944 /* Cell */ = {
@@ -501,6 +587,8 @@
 		DCD8AAE82B0F9BE700DCC39A /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				DC777E202B1DE95E002C474D /* Cell */,
+				DC777E272B1DEDB1002C474D /* ViewModel */,
 				DCD8AAE42B0F9BE400DCC39A /* ProfileViewController.swift */,
 				DCD8AAE52B0F9BE400DCC39A /* ProfileViewController.xib */,
 			);
@@ -618,6 +706,8 @@
 		DCE603042B0E7D0E001663B1 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				DC777E312B1E021B002C474D /* Settings */,
+				DC777E2C2B1DF910002C474D /* MyFavorites */,
 				DCCD73902B10F34300D81F9F /* Onboarding */,
 				DC5BF6772B0E927400EA0F6D /* Home */,
 				DCC51B992B10CD4E0059DACF /* Detail */,
@@ -739,12 +829,14 @@
 				DCCD738F2B10F33E00D81F9F /* OnboardingViewController.xib in Resources */,
 				DCD8AAE12B0F9B8900DCC39A /* ChatViewController.xib in Resources */,
 				DCE7AA602B16330F006099BD /* FoodTableViewCell.xib in Resources */,
+				DC777E302B1DF926002C474D /* MyFavoritesViewController.xib in Resources */,
 				DC5BF68B2B0E9DA800EA0F6D /* Colors.xcassets in Resources */,
 				DCC6695B2B122DAE00BE1233 /* CartItemTableCell.xib in Resources */,
 				DCE602FD2B0E7CFB001663B1 /* Inter-Regular.ttf in Resources */,
 				DC72BCAB2B1387160017D671 /* OrderViewController.xib in Resources */,
 				DC31C3842B1A0FD3001B86F7 /* DetailItemImageViewCell.xib in Resources */,
 				DCE602FB2B0E7CFB001663B1 /* Inter-SemiBold.ttf in Resources */,
+				DC777E352B1E022A002C474D /* SettingsViewController.xib in Resources */,
 				DCE602FF2B0E7CFB001663B1 /* Inter-Bold.ttf in Resources */,
 				DCC51B8C2B0FCECB0059DACF /* CartViewController.xib in Resources */,
 				DCE7AA562B162325006099BD /* HomeCategoryItemCell.xib in Resources */,
@@ -760,6 +852,8 @@
 				DCC51B972B10CD0C0059DACF /* DetailViewController.xib in Resources */,
 				DCE602FE2B0E7CFB001663B1 /* Inter-ExtraBold.ttf in Resources */,
 				DCE603032B0E7D0B001663B1 /* HomeViewController.xib in Resources */,
+				DC777E242B1DE96E002C474D /* ProfileTableItemCell.xib in Resources */,
+				DC777E3A2B1E02ED002C474D /* SettingsDarkModeItemCell.xib in Resources */,
 				DC5BF67C2B0E92BF00EA0F6D /* HomeTableItemSliderCell.xib in Resources */,
 				DCD8AAE72B0F9BE400DCC39A /* ProfileViewController.xib in Resources */,
 				DC022B7F2B1C8A82001608DF /* PlaceOrderItemCell.xib in Resources */,
@@ -817,9 +911,11 @@
 			files = (
 				DCC6694C2B121E8D00BE1233 /* UIViewController+Extension.swift in Sources */,
 				DCD8AACB2B0F912F00DCC39A /* FoodsDataProviderProtocol.swift in Sources */,
+				DC777E292B1DEDC5002C474D /* ProfileViewModelProtocol.swift in Sources */,
 				DC18C49D2B177DE70054DFC0 /* OnboardingViewModelProtocol.swift in Sources */,
 				DCCD73962B11380E00D81F9F /* OnboardingCell.swift in Sources */,
 				DCE603092B0E7D88001663B1 /* UIFont+Extension.swift in Sources */,
+				DC777E232B1DE96E002C474D /* ProfileTableItemCell.swift in Sources */,
 				DCD8AAC92B0F911E00DCC39A /* FoodsDataProvider.swift in Sources */,
 				DC31C3832B1A0FD3001B86F7 /* DetailItemImageViewCell.swift in Sources */,
 				DCE7AA4E2B15D796006099BD /* HomeCategoryCell.swift in Sources */,
@@ -827,9 +923,12 @@
 				DCC51B8E2B0FD3B50059DACF /* Slider.swift in Sources */,
 				DC72BCAC2B1387160017D671 /* OrderViewController.swift in Sources */,
 				DCD8AACD2B0F929C00DCC39A /* FoodsViewModel.swift in Sources */,
+				DC777E2F2B1DF926002C474D /* MyFavoritesViewController.swift in Sources */,
+				DC777E2B2B1DEF7C002C474D /* ProfileViewModel.swift in Sources */,
 				DCE602D72B0E7BB6001663B1 /* AppDelegate.swift in Sources */,
 				DCC51B962B10CD0C0059DACF /* DetailViewController.swift in Sources */,
 				DCD8AAAB2B0F5CB500DCC39A /* HomeViewModel.swift in Sources */,
+				DC777E262B1DEC73002C474D /* Profile.swift in Sources */,
 				DC72BCA52B12A1960017D671 /* CartResponse.swift in Sources */,
 				DCE7AA552B162325006099BD /* HomeCategoryItemCell.swift in Sources */,
 				DCC669552B12215300BE1233 /* Model.xcdatamodeld in Sources */,
@@ -838,6 +937,7 @@
 				DCD8AAB42B0F75EA00DCC39A /* SliderCollectionViewItemCell.swift in Sources */,
 				DC5BF67B2B0E92BF00EA0F6D /* HomeTableItemSliderCell.swift in Sources */,
 				DCD8AAC42B0F903A00DCC39A /* FoodsViewController.swift in Sources */,
+				DC777E342B1E022A002C474D /* SettingsViewController.swift in Sources */,
 				DCCD73922B11368000D81F9F /* OnboardingSlide.swift in Sources */,
 				DCC6695A2B122DAE00BE1233 /* CartItemTableCell.swift in Sources */,
 				DCD8AAA82B0F546D00DCC39A /* HomeDataProviderProtocol.swift in Sources */,
@@ -857,6 +957,8 @@
 				DC022B7E2B1C8A82001608DF /* PlaceOrderItemCell.swift in Sources */,
 				DC5BF6892B0E9A3600EA0F6D /* FoodsResponse.swift in Sources */,
 				DCE6030B2B0E7D9A001663B1 /* TypeAlias.swift in Sources */,
+				DC777E3F2B1E048C002C474D /* SettingsModel.swift in Sources */,
+				DC777E392B1E02ED002C474D /* SettingsDarkModeItemCell.swift in Sources */,
 				DC72BCB22B1485D40017D671 /* CartViewModel.swift in Sources */,
 				DCC51B8B2B0FCECB0059DACF /* CartViewController.swift in Sources */,
 				DCE602F32B0E7C61001663B1 /* Constants.swift in Sources */,
@@ -866,6 +968,8 @@
 				DC5BF6852B0E980500EA0F6D /* CategoryTableItemCell.swift in Sources */,
 				DCC51B842B0FC4EC0059DACF /* MainTabController.swift in Sources */,
 				DCD8AAE02B0F9B8900DCC39A /* ChatViewController.swift in Sources */,
+				DC777E3D2B1E046E002C474D /* SettingsViewModelProtocol.swift in Sources */,
+				DC777E412B1E0A93002C474D /* SettingsViewModel.swift in Sources */,
 				DCCD738E2B10F33E00D81F9F /* OnboardingViewController.swift in Sources */,
 				DC72BCB02B1485870017D671 /* CartViewModelProtocol.swift in Sources */,
 				DC72BCAE2B1482240017D671 /* CardFoodResponse.swift in Sources */,

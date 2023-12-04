@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingsViewController" customModule="Food_Delivery_App" customModuleProvider="target">
+            <connections>
+                <outlet property="settingsTableView" destination="WbS-yd-ZtK" id="3pg-Xu-B82"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="insetGrouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="WbS-yd-ZtK">
+                    <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <inset key="separatorInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
+                    <color key="sectionIndexBackgroundColor" name="gray10"/>
+                </tableView>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SEg-ax-cW3">
+                    <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="beW-2n-Smj"/>
+                    </constraints>
+                    <items>
+                        <navigationItem title="Settings" id="a53-3t-drS"/>
+                    </items>
+                </navigationBar>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" name="gray10"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="WbS-yd-ZtK" secondAttribute="trailing" id="9sJ-vO-zgs"/>
+                <constraint firstItem="SEg-ax-cW3" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="C9E-Jj-oD2"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="WbS-yd-ZtK" secondAttribute="bottom" id="EhH-Sg-b1G"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="SEg-ax-cW3" secondAttribute="trailing" id="KgE-YT-VfM"/>
+                <constraint firstItem="SEg-ax-cW3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bmW-xq-jiy"/>
+                <constraint firstItem="WbS-yd-ZtK" firstAttribute="top" secondItem="SEg-ax-cW3" secondAttribute="bottom" id="dvd-tu-Frc"/>
+                <constraint firstItem="WbS-yd-ZtK" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ewM-qf-v8j"/>
+            </constraints>
+            <point key="canvasLocation" x="110.68702290076335" y="19.718309859154932"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="gray10">
+            <color red="0.81199997663497925" green="0.84700000286102295" blue="0.86299997568130493" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
