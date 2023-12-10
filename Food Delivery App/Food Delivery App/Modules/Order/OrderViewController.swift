@@ -13,12 +13,8 @@ final class OrderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-     
         setNavigationBar()
     }
-   
- 
     
     private func setNavigationBar() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu")?.withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(tests))

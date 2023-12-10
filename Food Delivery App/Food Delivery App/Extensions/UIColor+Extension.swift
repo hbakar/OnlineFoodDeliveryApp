@@ -9,6 +9,12 @@ import UIKit
 
 
 extension UIColor {
+    
+    static var backgroundColor: UIColor = {
+        let color = UIColor(named: "backgroundColor")!
+        return color
+    }() 
+    
     static var titleColor: UIColor = {
         let color = UIColor(named: "titleColor")!
         return color

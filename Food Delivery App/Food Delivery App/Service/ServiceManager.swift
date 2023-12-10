@@ -38,7 +38,7 @@ final class ServiceManager {
                 do{
                     let cevap = try decoder.decode(T.self, from: data)
                     completion(.success(cevap))
-                }catch{
+                } catch{
                     completion(.failure(error))
                 }
             }

@@ -7,6 +7,7 @@
 
 import UIKit
 import Alamofire
+import Lottie
 
 final class CartViewController: UIViewController {
     
@@ -16,16 +17,39 @@ final class CartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        configure()
-    }
-    
-    private func configure() {
         setNavigationBar()
         registerTableViewCell()
         registerTableView()
         viewModel?.delegate = self
         getData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+       // control()
+    }
+    
+    private func showAnimation() {
+        let animationView = LottieAnimationView()
+        animationView.animation = LottieAnimation.named("notFound")
+        animationView.contentMode = .scaleAspectFit
+        animationView.frame = CGRect(x: 0, y: 0, width: 150, height: 150)
+        animationView.center = cartTableView.center
+        
+        animationView.animationSpeed = 1.5
+        animationView.loopMode = .loop
+        cartTableView.backgroundView = animationView
+        cartTableView.separatorStyle = .none
+        animationView.play()
+    }
+    
+    private func control() {
+        if let count = viewModel?.cartFoodList.count {
+            if count == 0 {
+                showAnimation()
+            }
+        }
     }
     
     private func setNavigationBar() {
@@ -43,7 +67,6 @@ final class CartViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         getData()
     }
     
@@ -97,8 +120,8 @@ extension CartViewController: CartViewModelDelegate {
     }
     
     func notify(_ events: CartViewModelEvents) {
+        
         switch events {
-            
         case .didFetchCartList:
             
             setCookie()
@@ -125,16 +148,22 @@ extension CartViewController: CartItemTableCellDelegate {
     
     func didClickedDeleteButton(indexPath: IndexPath) {
         
-        guard let liste = viewModel?.cartFoodList else { return }
-        
-        let model = liste [indexPath.row]
-        
-        let id = Int(model.sepet_yemek_id ?? "0")
-        let params: [String: Any] = ["sepet_yemek_id": id, "kullanici_adi":"huseyinbakar"]
-        viewModel?.removeFoodFromCart(with: Constants.removeFromCartURL, params: params)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now()+0.4) {
-            self.getData()
+        showConfirmationAlert(title: "Warning", message: "Are you sure you want to delete?") { b in
+            if b == true
+            {
+                guard let liste = self.viewModel?.cartFoodList else { return }
+                let model = liste[indexPath.row]
+                
+                let id = Int(model.sepet_yemek_id ?? "0")
+                let params: [String: Any] = ["sepet_yemek_id": id!, "kullanici_adi":"huseyinbakar"]
+                self.viewModel?.removeFoodFromCart(with: Constants.removeFromCartURL, params: params)
+                
+                DispatchQueue.main.asyncAfter(deadline: .now()+0.25) {
+                    self.getData()
+                }
+                
+                self.control()
+            }
         }
     }
     

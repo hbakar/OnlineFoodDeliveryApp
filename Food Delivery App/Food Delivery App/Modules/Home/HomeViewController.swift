@@ -8,6 +8,9 @@
 import UIKit
 
 final class HomeViewController: UIViewController, tableV {
+    
+    var viewModel: HomeViewModelProtocol?
+    
     @IBOutlet weak var btnRemove: UIButton!
     
     @IBOutlet weak var homeTableView: UITableView!
@@ -16,14 +19,16 @@ final class HomeViewController: UIViewController, tableV {
     
     @IBOutlet weak var searchText: UITextField!
     
+    let dispatchGroup = DispatchGroup()
+    
     @IBAction func btnSearchClicked(_ sender: Any) {
-      
+        
         if let txt = self.searchText.text {
-           
+            
             if txt.isEmpty == false {
-                viewModel?.isSearch = true
                 
-                if let lst = self.viewModel?.foodList.filter({$0.name?.lowercased().contains(txt.lowercased()) == true }) {
+                viewModel?.isSearch = true
+                if let lst = self.viewModel?.foodList.filter({$0.name?.trimmingCharacters(in: .whitespaces).lowercased().contains(txt.trimmingCharacters(in: .whitespaces).lowercased()) == true }) {
                     viewModel?.searchList = lst
                     
                     DispatchQueue.main.async {
@@ -37,16 +42,9 @@ final class HomeViewController: UIViewController, tableV {
         }
     }
     
-    var viewModel: HomeViewModelProtocol?
-    
-    fileprivate func setNavigationBar() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu")?.withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(tests))
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "profile-circle")?.withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(tests))
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         hideKeyboardWhenTappedAround()
         setupTableViewCell()
         setupTableView()
@@ -58,7 +56,6 @@ final class HomeViewController: UIViewController, tableV {
         viewModel?.getAllFoods(with: Constants.allFoodsURL)
         
         setNavigationBar()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -66,22 +63,29 @@ final class HomeViewController: UIViewController, tableV {
         let params : [String: Any] = ["kullanici_adi": "huseyinbakar"]
         viewModel?.getCartFoodList(with: Constants.allFoodsFromCartURL, params: params)
     }
- 
     
     @objc func tests() {
         print("test")
     }
     
     @IBAction func btnRemoveClicked(_ sender: Any) {
+        
+        dispatchGroup.enter()
         self.searchText.text = ""
+        //   self.homeTableView.dataSource = nil
+        self.viewModel?.isSearch = false
+        self.viewModel?.searchList = []
+        
+        viewModel?.getAllFoods(with: Constants.allFoodsURL)
+        dispatchGroup.leave()
     }
     
     private func setupTableViewCell() {
-        let nibName = String(describing: HomeTableItemSliderCell.self)       
+        let nibName = String(describing: HomeTableItemSliderCell.self)
         let nib = UINib(nibName: nibName, bundle: .main)
         homeTableView.register(nib, forCellReuseIdentifier: nibName)
         
-        // category cell
+        // category cell - (Not: api endpoint yok)
         
         let nibNameCat = String(describing: HomeCategoryCell.self)
         let nibCat = UINib(nibName: nibNameCat, bundle: .main)
@@ -103,11 +107,12 @@ final class HomeViewController: UIViewController, tableV {
         
         DispatchQueue.main.async {
             if let cnt = self.tabBarController?.tabBar.items {
-               
+                
                 var count = 0
                 if let cnt2 = cnt[2] as? UITabBarItem {
+                   
                     if UserDefaults.standard.integer(forKey: "cookieFoodCount") > 0 {
-                       UserDefaults.standard.integer(forKey: "cookieFoodCount")
+                        UserDefaults.standard.integer(forKey: "cookieFoodCount")
                         UserDefaults.standard.setValue(count, forKey: "cookieFoodCount")
                         Singleton.shared.cartItemCount = count
                     }
@@ -115,24 +120,36 @@ final class HomeViewController: UIViewController, tableV {
                         Singleton.shared.cartItemCount = count
                         UserDefaults.standard.setValue(count, forKey: "cookieFoodCount")
                     }
-                  
-                   // Singleton.shared.cartItemCount = Singleton.shared.cartItemCount + 1
+                    
+                    // Singleton.shared.cartItemCount = Singleton.shared.cartItemCount + 1
                     cnt2.badgeValue = String(Singleton.shared.cartItemCount)
                 }
             }
         }
+    }
+    
+    private func setNavigationBar() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu")?.withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(tests))
         
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "favorite")?.withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(goToFavorite)),UIBarButtonItem(image: UIImage(named: "profile-circle")?.withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(tests))]
+    }
+    
+    @objc func goToFavorite(){
+        let favoriteViewController = MyFavoritesViewController(nibName: String(describing: MyFavoritesViewController.self), bundle: .main)
+        favoriteViewController.modalPresentationStyle = .formSheet
+        favoriteViewController.viewModel = MyFavoritesViewModel()
+        self.present(favoriteViewController,animated: true)
     }
     
     private func setCartItemCount() {
         
         DispatchQueue.main.async {
             if let cnt = self.tabBarController?.tabBar.items {
-               
+                
                 var count = 0
                 if let cnt2 = cnt[2] as? UITabBarItem {
                     if UserDefaults.standard.integer(forKey: "cookieFoodCount") > 0 {
-                       UserDefaults.standard.integer(forKey: "cookieFoodCount")
+                        UserDefaults.standard.integer(forKey: "cookieFoodCount")
                         UserDefaults.standard.setValue(count, forKey: "cookieFoodCount")
                         Singleton.shared.cartItemCount = count
                     }
@@ -179,7 +196,7 @@ extension HomeViewController {
         switch tableItem {
         case .sliderTableItem:
             if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: HomeTableItemSliderCell.self)) as? HomeTableItemSliderCell {
-                //   cell.sliderData = self.viewModel?.sliderList ?? []
+                
                 return cell
             }
         case .categoryTableItem:
@@ -189,13 +206,9 @@ extension HomeViewController {
             }
         case .productsTableItem:
             if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: FoodTableViewCell.self)) as? FoodTableViewCell {
-                if viewModel?.isSearch == true {
-                    cell.foodList = self.viewModel?.searchList ?? []
-                }
-                else {
-                    cell.foodList = self.viewModel?.foodList ?? []
-                }
+                cell.delegate = self
                 cell.viewModel = viewModel
+                cell.reloadCollectionView()
                 return cell
             }
         }
@@ -204,7 +217,7 @@ extension HomeViewController {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-      
+        
         if indexPath.section == 0 {
             return 200
         }
@@ -242,6 +255,7 @@ extension HomeViewController: HomeViewModelDelegate {
         case .fetchFailedCategory(let error):
             print(error.localizedDescription)
         case .didAddToCart:
+            showAlert(title: "Added to Cart", message: "Successfully added to cart")
             setCartItemCount()
         case .addToCartFailed(let error):
             print(error.localizedDescription)
@@ -252,6 +266,10 @@ extension HomeViewController: HomeViewModelDelegate {
             }
         case .foodCartFetchFailed(let error):
             print(error.localizedDescription)
+        case .didAddToFavorites:
+            showAlert(title: "Added To Favorites", message: "Successfully Added To Favorites")
+        case .AddToCartFailed(let error):
+            print(error.localizedDescription)
         }
     }
     
@@ -260,6 +278,28 @@ extension HomeViewController: HomeViewModelDelegate {
 extension HomeViewController: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-      
+        
     }
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        
+    }
+}
+
+extension HomeViewController: FoodTableViewCellDelegate {
+  
+    func didClickedCollectionItem(with indexPath: IndexPath) {
+        if let item = viewModel?.isSearch == true ? viewModel?.searchList[indexPath.row] : viewModel?.foodList[indexPath.row] {
+            let detailViewController = DetailViewController(nibName: String(describing: DetailViewController.self), bundle: .main)
+            detailViewController.viewModel = DetailViewModel(detail: item)
+            if navigationController != nil {
+                navigationController?.pushViewController(detailViewController, animated: true)
+            } else {
+                detailViewController.modalPresentationStyle = .formSheet
+                present(detailViewController,animated: true)
+            }
+        }
+    }
+    
+    
 }

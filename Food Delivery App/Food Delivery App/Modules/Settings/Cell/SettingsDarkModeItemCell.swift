@@ -16,7 +16,6 @@ class SettingsDarkModeItemCell: UITableViewCell {
     @IBOutlet private weak var titleLabel: UILabel!
     weak var delegate: SettingsDarkModeItemCellDelegate?
     var indexPath: IndexPath?
-   
     
     @IBOutlet weak var darkModeSwitch: UISwitch!
     
@@ -26,9 +25,23 @@ class SettingsDarkModeItemCell: UITableViewCell {
     }
     
     @IBAction func darkModeSwitchChanged(_ sender: UISwitch) {
+        let appDelegate = UIApplication.shared.windows.first
+        if sender.isOn {
+            if #available(iOS 13.0, *) {
+                appDelegate?.overrideUserInterfaceStyle = .dark
+                UserDefaults.standard.setValue(true, forKey: "isDark")
+            }
+        }
+        else {
+            if #available(iOS 13.0, *) {
+                appDelegate?.overrideUserInterfaceStyle = .light
+                UserDefaults.standard.setValue(false, forKey: "isDark")
+            }
+        }
+        
         
         overrideUserInterfaceStyle = sender.isOn ? .dark : .light
-        UserDefaults.standard.setValue(sender.isOn, forKey: "isDarkMode")
+        UserDefaults.standard.setValue(sender.isOn, forKey: "isDark")
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

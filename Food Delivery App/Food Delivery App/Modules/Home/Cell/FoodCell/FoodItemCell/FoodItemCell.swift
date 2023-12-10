@@ -33,9 +33,7 @@ class FoodItemCell: UICollectionViewCell {
     @IBOutlet weak var buttonAdd: UIButton!
     
     weak var foodDelegate: FoodItemCellDelegate?
-    
-    var amount: Int = 0
-    
+    var amount = 0
     var indexPath: IndexPath?
     
     override func awakeFromNib() {
@@ -46,10 +44,10 @@ class FoodItemCell: UICollectionViewCell {
     
     @IBAction func buttonFavoritesClicked(_ sender: Any) {
         self.foodDelegate?.addToFavorites(with: indexPath!)
+     
     }
     
     func configure() {
-        
         foodImage.clipsToBounds = true
         foodImage.layer.cornerRadius = 12
         
@@ -71,25 +69,29 @@ class FoodItemCell: UICollectionViewCell {
     
     func prepareForFood(with model: FoodsResponseResult) {
         
-        if var imgPath = model.imagePath {
-            imgPath = Constants.getFoodImage.appending(imgPath)
-            let url = URL(string: imgPath)
-            foodImage.kf.setImage(with: url)
+        DispatchQueue.main.async {
+            
+            if var imgPath = model.imagePath {
+                imgPath = Constants.getFoodImage.appending(imgPath)
+                let url = URL(string: imgPath)
+                self.foodImage.kf.setImage(with: url)
+            }
+            
+            self.titleLabel.text = model.name ?? ""
+            self.priceLabel.text = (model.price ?? "").appending(" ₺")
         }
-        
-        titleLabel.text = model.name ?? ""
-        priceLabel.text = (model.price ?? "").appending(" ₺")
     }
     
     @IBAction func amountStepperChanged(_ sender: Any) {
-        amount = Int((sender as? UIStepper)?.value ?? 0)
+        self.amount = Int((sender as? UIStepper)?.value ?? 0)
         self.amountTextField.text = String(amount)
     }
     
     @IBAction func buttonAddClicked(_ sender: Any) {
-        
-        self.foodDelegate?.didClicked(indexPath: indexPath!,with: amount)
-        
+        if let amount = Int(self.amountTextField.text ?? "") {
+            self.amount = amount
+            self.foodDelegate?.didClicked(indexPath: indexPath!,with: amount)
+        }
     }
     
 }

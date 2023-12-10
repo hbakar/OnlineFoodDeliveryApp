@@ -9,4 +9,5 @@ import Foundation
 
 protocol DetailViewModelProtocol {
     var detail: FoodsResponseResult? {get set}
+    var detailTableItems: [DetailTableItems] {get set}
 }

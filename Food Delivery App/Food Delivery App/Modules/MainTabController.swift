@@ -23,7 +23,7 @@ class MainTabController: UITabBarController,UITabBarControllerDelegate {
     
     private func customizeTabbar() {
         let appearance = UITabBarAppearance()
-        appearance.backgroundColor = .white
+        appearance.backgroundColor = .backgroundColor
         changeColor(itemApperance: appearance.stackedLayoutAppearance)
         changeColor(itemApperance: appearance.compactInlineLayoutAppearance)
         changeColor(itemApperance: appearance.inlineLayoutAppearance)
@@ -48,13 +48,12 @@ class MainTabController: UITabBarController,UITabBarControllerDelegate {
     func templateNavigationController(title: String, image: UIImage, rootViewController: UIViewController) -> UINavigationController
     {
         //view controller ların background ını ayarladık
-        rootViewController.view.backgroundColor = .white
         
         let nav = UINavigationController(rootViewController: rootViewController)
         nav.tabBarItem.image = title.isEmpty ? image.withRenderingMode(.alwaysOriginal) : image
         
         nav.tabBarItem.title = title
-        nav.navigationBar.backgroundColor = .white
+        nav.navigationBar.backgroundColor = .backgroundColor
         return nav
     }
     

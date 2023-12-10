@@ -20,4 +20,5 @@ final class HomeDataProvider: HomeDataProviderProtocol {
     func getAllFoodsFromCart(with url: String, params: [String: Any], completion: @escaping (Result<CartFoodResponse, Error>) -> ()) {
         ServiceManager.shared.post(urlString: url, params: params, completion: completion)
     }
+    
 }

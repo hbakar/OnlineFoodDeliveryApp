@@ -9,6 +9,23 @@ import Foundation
 
 final class DetailViewModel: DetailViewModelProtocol {
     
-    var detail: FoodsResponseResult?
+    init(detail: FoodsResponseResult?) {
+        self.detail = detail
+        self.detailTableItems.append(.detailImageItem)
+        self.detailTableItems.append(.detailTitleItem)
+        self.detailTableItems.append(.detailPriceItem)
+        self.detailTableItems.append(.detailQuantity)
+        self.detailTableItems.append(.detailAddToCart)
+    }
     
+    var detail: FoodsResponseResult?
+    var detailTableItems: [DetailTableItems] = []
+}
+
+enum DetailTableItems {
+    case detailImageItem
+    case detailTitleItem
+    case detailPriceItem
+    case detailQuantity
+    case detailAddToCart
 }

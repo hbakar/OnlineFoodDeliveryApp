@@ -7,8 +7,13 @@
 
 import Foundation
 import Alamofire
+import CoreData
 
 class HomeViewModel: HomeViewModelProtocol {
+ 
+    var foodItemDelegate: FoodTableViewCellDelegate?
+    
+    let context = appDelegate.persistentContainer.viewContext
     
     var cartFoodList: [CartFoodResponseResult] = []
     
@@ -20,7 +25,7 @@ class HomeViewModel: HomeViewModelProtocol {
    
     var homeTableItems: [HomeTableItem] = []
     
-    var delegate: HomeViewModelDelegate?
+    weak var delegate: HomeViewModelDelegate?
     
     var isSearch = Bool()
     
@@ -32,6 +37,16 @@ class HomeViewModel: HomeViewModelProtocol {
     
     init(service: HomeDataProviderProtocol) {
         self.service = service
+    }
+    
+    func addToFavorites(with model: FoodsResponseResult) {
+       let favori = FoodModel(context: context)
+        favori.id = model.id ?? "0"
+        favori.name = model.name ?? ""
+        favori.imagePath = Constants.getFoodImage.appending(model.imagePath ?? "")
+        favori.price = model.price ?? "0"
+        appDelegate.saveContext()
+        self.delegate?.notify(.didAddToFavorites)
     }
     
     func getCartFoodList(with url: String, params: Alamofire.Parameters) {
@@ -77,9 +92,14 @@ class HomeViewModel: HomeViewModelProtocol {
     }
     
     func getCategoryItems() {
-        categoryList = [Category(id: 1, name: "Sandwiches"),Category(id: 2, name: "Grill"),Category(id: 3, name: "Salads"),
-            Category(id: 4, name: "Drinks"),
-                        Category(id: 5, name: "Chips")
+        categoryList = [Category(id: 1, name: "Makarnalar"),Category(id: 2, name: "Et Yemekleri"),Category(id: 3, name: "Çorba Çeşitleri"),
+            Category(id: 4, name: "Deniz Ürünleri "),
+                        Category(id: 5, name: "Sebze Yemekleri"),
+                        Category(id: 6, name: "Salatalar"),
+                        Category(id: 7, name: "Hamur İşleri"),
+                        Category(id: 8, name: "Kahvaltı"),
+                        Category(id: 9, name: "Tatlılar"),
+                        Category(id: 10, name: "Atıştırmalıklar"),
         ]
         
         homeTableItems.append(.categoryTableItem)
@@ -112,6 +132,8 @@ enum HomeViewModelEvents {
     case addToCartFailed(Error)
     case didFetchCartFood
     case foodCartFetchFailed(Error)
+    case didAddToFavorites
+    case AddToCartFailed(Error)
 }
 
 enum HomeTableItem {

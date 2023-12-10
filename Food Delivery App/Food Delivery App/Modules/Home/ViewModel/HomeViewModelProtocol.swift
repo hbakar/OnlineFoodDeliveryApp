@@ -10,6 +10,8 @@ import Alamofire
 
 protocol HomeViewModelProtocol {
     
+    var foodItemDelegate: FoodTableViewCellDelegate? {get set}
+    
     var delegate: HomeViewModelDelegate? {get set}
     
     var foodList: [FoodsResponseResult] {get set}
@@ -37,4 +39,6 @@ protocol HomeViewModelProtocol {
     func getCartFoodList(with url:String, params: Parameters)
     
     func addToCart(with url: String, params: [String: Any])
+    
+    func addToFavorites(with model: FoodsResponseResult)
 }

@@ -32,6 +32,7 @@ final class FoodsViewController: UIViewController, FoodItemCellDelegate {
         if let model = viewModel?.foodList[indexPath.row] {
             
             if let name = model.name, let imageName = model.imagePath, let price = model.price {
+                
                let params: [String: Any] = [
                     "yemek_adi": name,
                     "yemek_resim_adi": imageName,
@@ -62,7 +63,6 @@ final class FoodsViewController: UIViewController, FoodItemCellDelegate {
         
         let detailViewController = DetailViewController(nibName: String(describing: DetailViewController.self), bundle: .main)
         
-        detailViewController.chosenFood = selectedItem
         detailViewController.modalTransitionStyle = .coverVertical
         detailViewController.modalPresentationStyle = .fullScreen
         present(detailViewController,animated: true)

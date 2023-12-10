@@ -27,18 +27,27 @@
                     <inset key="separatorInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                     <color key="sectionIndexBackgroundColor" name="gray10"/>
                 </tableView>
-                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SEg-ax-cW3">
+                <navigationBar contentMode="scaleToFill" largeTitles="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SEg-ax-cW3">
                     <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="beW-2n-Smj"/>
                     </constraints>
                     <items>
-                        <navigationItem title="Settings" id="a53-3t-drS"/>
+                        <navigationItem title="Settings" id="a53-3t-drS">
+                            <barButtonItem key="rightBarButtonItem" title="Item" image="close" style="done" id="wt7-Vo-mRZ">
+                                <connections>
+                                    <action selector="buttonCloseClicked:" destination="-1" id="xv9-Vp-7IA"/>
+                                </connections>
+                            </barButtonItem>
+                        </navigationItem>
                     </items>
+                    <navigationBarAppearance key="standardAppearance"/>
+                    <navigationBarAppearance key="compactAppearance"/>
+                    <navigationBarAppearance key="scrollEdgeAppearance"/>
                 </navigationBar>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" name="gray10"/>
+            <color key="backgroundColor" name="backgroundColor"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="WbS-yd-ZtK" secondAttribute="trailing" id="9sJ-vO-zgs"/>
                 <constraint firstItem="SEg-ax-cW3" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="C9E-Jj-oD2"/>
@@ -52,6 +61,10 @@
         </view>
     </objects>
     <resources>
+        <image name="close" width="32" height="32"/>
+        <namedColor name="backgroundColor">
+            <color red="0.99999994039535522" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="gray10">
             <color red="0.81199997663497925" green="0.84700000286102295" blue="0.86299997568130493" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

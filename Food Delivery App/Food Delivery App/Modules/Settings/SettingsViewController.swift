@@ -22,6 +22,10 @@ final class SettingsViewController: UIViewController {
         viewModel?.getSettingsData()
     }
     
+    @IBAction func buttonCloseClicked(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
+    
     private func registerTableView() {
         settingsTableView.delegate = self
         settingsTableView.dataSource = self

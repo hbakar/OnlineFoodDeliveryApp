@@ -10,12 +10,14 @@ import Foundation
 
 final class CartViewModel: CartViewModelProtocol {
     
-    var delegate: CartViewModelDelegate?
-   
+    weak var delegate: CartViewModelDelegate?
+    
     var cartFoodList: [CartFoodResponseResult] = []
     
     var cardResponse: CartResponse?
-        
+    
+    var quantity = 0
+    
     private let service: CartDataProviderProtocol
     
     init(service: CartDataProviderProtocol) {
@@ -26,7 +28,10 @@ final class CartViewModel: CartViewModelProtocol {
         service.getAllFoodsFromCart(with: url, params: params) { [weak self] results in
             switch results {
             case .success(let success):
-                self?.cartFoodList = success.sepet_yemekler ?? []
+             
+                guard let liste = success.sepet_yemekler else { return }
+                self?.cartFoodList = liste
+                
                 self?.delegate?.notify(.didFetchCartList)
             case .failure(let failure):
                 self?.delegate?.notify(.fetchFailed(failure))

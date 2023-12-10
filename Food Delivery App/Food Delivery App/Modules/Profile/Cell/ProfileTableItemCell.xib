@@ -33,7 +33,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Personal Information" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JNT-N7-qp0">
                         <rect key="frame" x="48" y="21.666666666666668" width="257" height="17.000000000000004"/>
                         <fontDescription key="fontDescription" name="Inter-Bold" family="Inter" pointSize="14"/>
-                        <color key="textColor" name="gray02"/>
+                        <color key="textColor" name="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SdN-Vh-4Gb" userLabel="lineView">
@@ -44,6 +44,7 @@
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" name="backgroundColor"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="RXk-GV-Ui5" secondAttribute="bottom" constant="18" id="1Kn-NP-nrD"/>
                     <constraint firstItem="SdN-Vh-4Gb" firstAttribute="leading" secondItem="RXk-GV-Ui5" secondAttribute="leading" id="5hS-mX-bv4"/>
@@ -68,11 +69,14 @@
     </objects>
     <resources>
         <image name="user-square" width="24" height="24"/>
-        <namedColor name="gray02">
-            <color red="0.21600000560283661" green="0.27799999713897705" blue="0.31000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="backgroundColor">
+            <color red="0.99999994039535522" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="gray10">
             <color red="0.81199997663497925" green="0.84700000286102295" blue="0.86299997568130493" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="textColor">
+            <color red="0.32941176470588235" green="0.43137254901960786" blue="0.47843137254901957" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

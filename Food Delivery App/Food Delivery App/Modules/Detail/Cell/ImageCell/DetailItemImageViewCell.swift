@@ -14,20 +14,22 @@ class DetailItemImageViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        detailImage.layer.masksToBounds = true
+        detailImage.layer.cornerRadius = 12
+        detailImage.layer.borderWidth = 1
+        detailImage.layer.borderColor = UIColor.gray10.cgColor
+     
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        
+   
     }
     
-    func prepareForDetailImage(with model: FoodsResponseResult)
-    {
+    func prepareForDetailImage(with model: FoodsResponseResult) {
         let path = Constants.getFoodImage.appending(model.imagePath ?? "")
         let url = URL(string: path)!
-        
         self.detailImage.kf.setImage(with: url)
     }
     

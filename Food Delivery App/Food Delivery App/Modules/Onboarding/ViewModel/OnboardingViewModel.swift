@@ -23,7 +23,7 @@ protocol OnboardingViewModelDelegate: AnyObject {
     func notify(_ event: OnboardingViewModelEvent)
 }
 
-enum OnboardingViewModelEvent{
+enum OnboardingViewModelEvent {
     case didFetchOnboardingList
     case fetchFailed(Error)
 }

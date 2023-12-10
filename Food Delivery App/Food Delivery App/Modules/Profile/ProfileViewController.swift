@@ -81,13 +81,14 @@ extension ProfileViewController: tableV {
         case 1:
             let myFavoritesViewController = MyFavoritesViewController(nibName: String(describing: MyFavoritesViewController.self), bundle: .main)
           
-            myFavoritesViewController.modalTransitionStyle = .flipHorizontal
+            myFavoritesViewController.viewModel = MyFavoritesViewModel()
+           
             myFavoritesViewController.modalPresentationStyle = .formSheet
             present(myFavoritesViewController,animated: true)
         case 2:
             let settingsViewController = SettingsViewController(nibName: String(describing: SettingsViewController.self), bundle: .main)
             settingsViewController.viewModel = SettingsViewModel()
-            settingsViewController.modalTransitionStyle = .flipHorizontal
+        
             settingsViewController.modalPresentationStyle = .formSheet
             present(settingsViewController,animated: true)
         default:
