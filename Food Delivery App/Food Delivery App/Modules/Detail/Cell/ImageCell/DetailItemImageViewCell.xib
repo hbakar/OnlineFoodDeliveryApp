@@ -19,6 +19,9 @@
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="2fY-no-hMj">
                         <rect key="frame" x="16" y="16" width="218" height="218"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="eyQ-ZE-lBa"/>
+                        </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="12"/>
                         </userDefinedRuntimeAttributes>
@@ -29,7 +32,7 @@
                     <constraint firstAttribute="trailing" secondItem="2fY-no-hMj" secondAttribute="trailing" constant="16" id="BIt-wS-pmh"/>
                     <constraint firstItem="2fY-no-hMj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="SVe-K3-nGf"/>
                     <constraint firstAttribute="bottom" secondItem="2fY-no-hMj" secondAttribute="bottom" constant="16" id="ayd-Qz-n5b"/>
-                    <constraint firstItem="2fY-no-hMj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="s9d-wq-0KB"/>
+                    <constraint firstItem="2fY-no-hMj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="dDg-qO-RFp"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

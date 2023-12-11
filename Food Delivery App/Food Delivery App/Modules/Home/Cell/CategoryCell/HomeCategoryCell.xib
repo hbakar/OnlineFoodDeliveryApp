@@ -30,6 +30,7 @@
                         </collectionViewFlowLayout>
                     </collectionView>
                 </subviews>
+                <color key="backgroundColor" name="backgroundColor"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="4Uq-mG-N3b" secondAttribute="trailing" id="Dyq-H8-YEL"/>
                     <constraint firstItem="4Uq-mG-N3b" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="NlH-K7-Gxb"/>

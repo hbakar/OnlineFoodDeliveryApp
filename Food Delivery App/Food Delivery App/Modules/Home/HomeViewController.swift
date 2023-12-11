@@ -60,6 +60,16 @@ final class HomeViewController: UIViewController, tableV {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        getCart()
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getCart()
+    }
+    
+    private func getCart(){
         let params : [String: Any] = ["kullanici_adi": "huseyinbakar"]
         viewModel?.getCartFoodList(with: Constants.allFoodsFromCartURL, params: params)
     }
@@ -291,7 +301,8 @@ extension HomeViewController: FoodTableViewCellDelegate {
     func didClickedCollectionItem(with indexPath: IndexPath) {
         if let item = viewModel?.isSearch == true ? viewModel?.searchList[indexPath.row] : viewModel?.foodList[indexPath.row] {
             let detailViewController = DetailViewController(nibName: String(describing: DetailViewController.self), bundle: .main)
-            detailViewController.viewModel = DetailViewModel(detail: item)
+            let dataProvider = DetailDataProvider()
+            detailViewController.viewModel = DetailViewModel(service: dataProvider,detail: item)
             if navigationController != nil {
                 navigationController?.pushViewController(detailViewController, animated: true)
             } else {

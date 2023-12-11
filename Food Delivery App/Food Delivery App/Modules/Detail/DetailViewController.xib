@@ -21,6 +21,7 @@
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qn8-Na-Bgc">
                     <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                    <color key="backgroundColor" name="backgroundColor"/>
                     <inset key="separatorInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                     <color key="sectionIndexBackgroundColor" name="backgroundColor"/>
                 </tableView>
@@ -32,7 +33,7 @@
                 <constraint firstItem="qn8-Na-Bgc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="u6Q-vh-mm2"/>
                 <constraint firstItem="qn8-Na-Bgc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="zzy-jm-7gz"/>
             </constraints>
-            <point key="canvasLocation" x="36" y="20"/>
+            <point key="canvasLocation" x="35.877862595419849" y="19.718309859154932"/>
         </view>
     </objects>
     <resources>

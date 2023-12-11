@@ -22,12 +22,13 @@ final class CartViewController: UIViewController {
         registerTableView()
         viewModel?.delegate = self
         getData()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-       // control()
+      // control()
     }
     
     private func showAnimation() {
@@ -45,8 +46,8 @@ final class CartViewController: UIViewController {
     }
     
     private func control() {
-        if let count = viewModel?.cartFoodList.count {
-            if count == 0 {
+        if let liste = viewModel?.cartFoodList {
+            if liste.count == 0 {
                 showAnimation()
             }
         }
@@ -64,10 +65,11 @@ final class CartViewController: UIViewController {
         
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getData()
+        
+      //  control()
     }
     
     private func getData() {
@@ -120,15 +122,14 @@ extension CartViewController: CartViewModelDelegate {
     }
     
     func notify(_ events: CartViewModelEvents) {
-        
         switch events {
         case .didFetchCartList:
-            
             setCookie()
-            
             DispatchQueue.main.async {
                 self.cartTableView.dataSource = self
                 self.cartTableView.reloadData()
+                
+              //  self.control()
             }
         case .fetchFailed(let error):
             self.cartTableView.dataSource = nil

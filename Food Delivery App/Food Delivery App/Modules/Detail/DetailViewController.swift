@@ -8,7 +8,7 @@
 import UIKit
 
 final class DetailViewController: UIViewController {
-    
+  
     @IBOutlet weak var detailTableView: UITableView!
     
     var viewModel: DetailViewModelProtocol?
@@ -20,6 +20,8 @@ final class DetailViewController: UIViewController {
         setupTableViewCell()
         setupTableView()
         setNavigationBar()
+        viewModel?.delegate = self
+        viewModel?.getData()
     }
     
     private func setupTableView() {
@@ -92,8 +94,6 @@ extension DetailViewController: tableV {
             return 1
         case .detailQuantity:
             return 1
-        case .detailAddToCart:
-            return 1
         }
     }
     
@@ -113,13 +113,14 @@ extension DetailViewController: tableV {
          
             return detailImageCell
         case .detailTitleItem:
-            guard let detailTitleCell = tableView.dequeueReusableCell(withIdentifier: String(describing: DetailTitleItemCell.self), for: indexPath) as? DetailTitleItemCell else { return UITableViewCell()}
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: DetailTitleItemCell.self), for: indexPath) as? DetailTitleItemCell else { return UITableViewCell()}
           
             if let model = viewModel?.detail {
-                detailTitleCell.prepareForDetailTitle(with: model)
+                cell.delegate = self
+                cell.prepareForDetailTitle(with: model)
             }
          
-            return detailTitleCell
+            return cell
         case .detailPriceItem:
             guard let detailPriceCell = tableView.dequeueReusableCell(withIdentifier: String(describing: PriceTableItemCell.self), for: indexPath) as? PriceTableItemCell else { return UITableViewCell()}
           
@@ -129,31 +130,54 @@ extension DetailViewController: tableV {
          
             return detailPriceCell
         case .detailQuantity:
-            guard let detailQuantityCell = tableView.dequeueReusableCell(withIdentifier: String(describing: QuantityTableItemCell.self), for: indexPath) as? QuantityTableItemCell else { return UITableViewCell()}
-            detailQuantityCell.quantityTextField.delegate = self
-            return detailQuantityCell
-          /*
-           if let model = viewModel?.detail {
-               detailPriceCell.prepareForFoodPrice(with: model)
-           }
-           */
-        case .detailAddToCart:
-            guard let detailAddtoCartCell = tableView.dequeueReusableCell(withIdentifier: String(describing:AddtoCartTableItemCell.self), for: indexPath) as? AddtoCartTableItemCell else { return UITableViewCell()}
-            detailAddtoCartCell.delegate = self
-            return detailAddtoCartCell
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: QuantityTableItemCell.self), for: indexPath) as? QuantityTableItemCell else { return UITableViewCell()}
+            cell.delegate = self
+            return cell
         }
-        return UITableViewCell()
     }
 }
 
-extension DetailViewController: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        print(textField.text)
+
+extension DetailViewController: QuantityTableItemCellDelegate {
+   
+    func didAddToCart(with q: Int) {
+        if let model = viewModel?.detail {
+            let params: [String: Any] = ["yemek_adi":model.name ?? "","yemek_resim_adi":model.imagePath ?? "","yemek_fiyat":model.price ?? "","yemek_siparis_adet":q,"kullanici_adi":"huseyinbakar"]
+            viewModel?.addToCart(with: Constants.addToCartURL, params: params)
+            
+            showAlert(title: "Added to Cart", message: "Successfully added to cart")
+        }
+    }
+   
+}
+
+extension DetailViewController: DetailViewModelDelegate {
+    func notify(_ event: DetailViewModelEvents) {
+        switch event {
+        case .didFetchDetail:
+            DispatchQueue.main.async {
+                self.detailTableView.reloadData()
+            }
+        case .fetchFailed(let error):
+            print(error.localizedDescription)
+        case .didAddtoCart:
+            print("sepete ekle çalıştı")
+        case .failedToAddtoCart(let error):
+            print(error.localizedDescription)
+        case .didAddtoFavorites:
+            showAlert(title: "Added To Favorites", message: "Succesfully Added To Favorites")
+        case .failedAddtoFavorites(let error):
+            print(error.localizedDescription)
+        }
     }
 }
 
-extension DetailViewController: AddtoCartTableItemCellDelegate {
-    func didAddToCartClicked() {
-        print("test")
+extension DetailViewController: DetailTitleItemCellDelegate {
+    func didClicked() {
+        guard let model = self.viewModel?.detail else {
+            return
+        }
+        viewModel?.addToFavorites(with: model)
+        
     }
 }

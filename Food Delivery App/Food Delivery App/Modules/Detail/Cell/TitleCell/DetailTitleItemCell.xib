@@ -24,28 +24,44 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hnI-aw-87r">
-                        <rect key="frame" x="16" y="13" width="294" height="24"/>
+                        <rect key="frame" x="16" y="13" width="246" height="24"/>
                         <fontDescription key="fontDescription" name="Inter-Bold" family="Inter" pointSize="20"/>
                         <color key="textColor" name="gray01"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RyE-UP-hkr">
+                        <rect key="frame" x="278" y="9" width="32" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="32" id="1vL-c8-7Ua"/>
+                            <constraint firstAttribute="height" constant="32" id="zr9-n5-2ma"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="favorite"/>
+                        <connections>
+                            <action selector="buttonAddFavoriteClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="xpS-nO-ljs"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="RyE-UP-hkr" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="0e6-Dr-fWR"/>
                     <constraint firstItem="hnI-aw-87r" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="EVx-Ck-IDR"/>
                     <constraint firstAttribute="bottom" secondItem="hnI-aw-87r" secondAttribute="bottom" constant="13" id="EbU-51-drZ"/>
                     <constraint firstItem="hnI-aw-87r" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="G4i-YC-sLf"/>
-                    <constraint firstAttribute="trailing" secondItem="hnI-aw-87r" secondAttribute="trailing" constant="16" id="s5O-mN-L7T"/>
+                    <constraint firstAttribute="trailing" secondItem="RyE-UP-hkr" secondAttribute="trailing" constant="16" id="U4r-W5-YT2"/>
+                    <constraint firstItem="RyE-UP-hkr" firstAttribute="leading" secondItem="hnI-aw-87r" secondAttribute="trailing" constant="16" id="Ya1-UY-3Bj"/>
                     <constraint firstItem="hnI-aw-87r" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12.999999999999998" id="x5q-Em-m9o"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="buttonAddFavorite" destination="RyE-UP-hkr" id="RO1-zM-tCe"/>
                 <outlet property="labelTitle" destination="hnI-aw-87r" id="umb-Vr-19u"/>
             </connections>
             <point key="canvasLocation" x="134.35114503816794" y="-10.563380281690142"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="favorite" width="32" height="32"/>
         <namedColor name="gray01">
             <color red="0.14900000393390656" green="0.19599999487400055" blue="0.2199999988079071" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

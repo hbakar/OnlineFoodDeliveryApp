@@ -31,9 +31,7 @@ class CartItemTableCell: UITableViewCell {
     }
     
     fileprivate func configure() {
-        self.layer.borderColor = UIColor(white: 0.95, alpha: 1).cgColor
-        self.layer.borderWidth = 1
-        
+     
         self.cartImage.layer.cornerRadius = 12
         self.cartImage.layer.masksToBounds = true
       
