@@ -18,7 +18,7 @@ Merhaba, Online yemek sipariş uygulamasında, Alamofire generic servis aracıl�
   
 * Demo
   
-https://github.com/hbakar/OnlineFoodDeliveryApp/blob/main/bootcamp-ios.mp4
+[https://github.com/hbakar/OnlineFoodDeliveryApp/blob/main/bootcamp-ios.mp4](https://github.com/hbakar/OnlineFoodDeliveryApp/assets/7202681/4fa342cd-f7ef-4024-ab45-8f7707c93df7)
 
 
 * API
