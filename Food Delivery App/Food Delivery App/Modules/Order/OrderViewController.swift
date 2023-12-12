@@ -18,7 +18,7 @@ final class OrderViewController: UIViewController {
     
     private func showAnimation() {
         let animationView = LottieAnimationView()
-        animationView.animation = LottieAnimation.named("notFound")
+        animationView.animation = LottieAnimation.named("success")
         animationView.contentMode = .scaleAspectFit
         animationView.frame = CGRect(x: 0, y: 0, width: 150, height: 150)
         animationView.center = view.center

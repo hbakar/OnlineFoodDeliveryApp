@@ -144,7 +144,7 @@ final class HomeViewController: UIViewController, tableV {
         
         DispatchQueue.main.async {
             if let cnt = self.tabBarController?.tabBar.items {
-                var count = 0
+                var count = 1
                 if let cnt2 = cnt[2] as? UITabBarItem {
                     let count = self.viewModel?.cartFoodList.count ?? 0
                     cnt2.badgeValue = String(count)
@@ -246,7 +246,7 @@ extension HomeViewController: HomeViewModelDelegate {
             print(error.localizedDescription)
         case .didAddToCart:
             showAlert(title: "Added to Cart", message: "Successfully added to cart")
-            setCartItemCount()
+           setCartItemCount()
         case .addToCartFailed(let error):
             print(error.localizedDescription)
         case .didFetchCartFood:

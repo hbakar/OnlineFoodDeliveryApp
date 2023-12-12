@@ -64,7 +64,11 @@ final class OnboardingViewController: UIViewController, collectionV {
     @IBAction func btnAllowClicked(_ sender: Any) {
         
         if currentPage == (viewModel?.slideList.count ?? 0) - 1 {
-          
+            DispatchQueue.main.async {
+                let mainViewController = MainTabController()
+                mainViewController.modalPresentationStyle = .fullScreen
+                self.present(mainViewController, animated: true, completion: nil)
+            }
         } else {
             currentPage += 1
             let indexPath = IndexPath(item: currentPage, section: 0)
@@ -92,13 +96,15 @@ extension OnboardingViewController: OnboardingViewModelDelegate {
         case .didFetchOnboardingList:
             DispatchQueue.main.async {
                 
-                UserDefaults.standard.set(true, forKey: "onboardAcildiMi")
+               // UserDefaults.standard.set(true, forKey: "onboardAcildiMi")
                 
+               /*
                 DispatchQueue.main.async {
                     let mainViewController = MainTabController()
                     mainViewController.modalPresentationStyle = .fullScreen
                     self.present(mainViewController, animated: true, completion: nil)
                 }
+                */
             }
         case .fetchFailed(let error):
             print(error.localizedDescription)

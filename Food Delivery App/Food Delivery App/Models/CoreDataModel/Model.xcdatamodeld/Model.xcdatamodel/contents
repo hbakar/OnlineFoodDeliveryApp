@@ -6,11 +6,4 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="price" optional="YES" attributeType="String"/>
     </entity>
-    <entity name="OrderHistoryModel" representedClassName="FoodModel" syncable="YES" codeGenerationType="class">
-        <attribute name="addedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="id" optional="YES" attributeType="String"/>
-        <attribute name="imagePath" optional="YES" attributeType="String"/>
-        <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="price" optional="YES" attributeType="String"/>
-    </entity>
 </model>
