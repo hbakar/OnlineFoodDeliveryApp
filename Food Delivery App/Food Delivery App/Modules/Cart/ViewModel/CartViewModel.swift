@@ -9,14 +9,18 @@ import Foundation
 
 
 final class CartViewModel: CartViewModelProtocol {
+  
+    var subTotal: Double = 0.0
+    
+    var deliveryFee: Double = 5.0
+    
+    var orderTotal: Double = 0.0
     
     weak var delegate: CartViewModelDelegate?
     
     var cartFoodList: [CartFoodResponseResult] = []
     
     var cardResponse: CartResponse?
-    
-    var quantity = 0
     
     private let service: CartDataProviderProtocol
     
@@ -34,7 +38,7 @@ final class CartViewModel: CartViewModelProtocol {
                 if let list = success.sepet_yemekler {
                     list.enumerated().forEach { (index, listItem) in
                         guard let name = listItem.yemek_adi else { return }
-                        
+                   
                         if let existingIndex = myList.firstIndex(where: { $0.yemek_adi == name }) {
                             let q1 = Int(myList[existingIndex].yemek_siparis_adet ?? "0")
                             let q2 = Int(listItem.yemek_siparis_adet ?? "0")
@@ -45,15 +49,17 @@ final class CartViewModel: CartViewModelProtocol {
                         }
                     }
                 }
-                
                 self?.cartFoodList = myList
-                
                 self?.delegate?.notify(.didFetchCartList)
                 
             case .failure(let failure):
                 self?.delegate?.notify(.fetchFailed(failure))
             }
         }
+    }
+    
+    func getSubTotal(with quantity: Double,y: Double) -> Double {
+        return 0.0
     }
     
     func removeFoodFromCart(with url: String, params: [String: Any]) {

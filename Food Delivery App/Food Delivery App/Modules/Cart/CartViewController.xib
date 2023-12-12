@@ -8,10 +8,21 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Inter-Bold.ttf">
+            <string>Inter-Bold</string>
+        </array>
+        <array key="Inter-Medium.ttf">
+            <string>Inter-Medium</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CartViewController" customModule="Food_Delivery_App" customModuleProvider="target">
             <connections>
                 <outlet property="cartTableView" destination="Svo-Nz-1rW" id="Zdr-pV-rfc"/>
+                <outlet property="labelDeliveryFee" destination="jhH-Gi-psf" id="hPG-mS-I6q"/>
+                <outlet property="labelOrderTotal" destination="KDu-V0-ZGw" id="BF4-z8-OX2"/>
+                <outlet property="labelSubtotal" destination="ce5-vU-JSa" id="Slh-Dx-qTg"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,16 +32,119 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Svo-Nz-1rW">
-                    <rect key="frame" x="0.0" y="59" width="393" height="599"/>
+                    <rect key="frame" x="0.0" y="59" width="393" height="559"/>
                     <inset key="separatorInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                     <color key="sectionIndexBackgroundColor" name="backgroundColor"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NPj-w4-wXb">
-                    <rect key="frame" x="0.0" y="658" width="393" height="160"/>
+                    <rect key="frame" x="0.0" y="618" width="393" height="200"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="swJ-kg-DoH">
+                            <rect key="frame" x="16" y="136" width="361" height="48"/>
+                            <color key="backgroundColor" name="tertiaryColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="48" id="Ief-Uc-iRe"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="PLACE ORDER">
+                                <fontDescription key="titleFontDescription" name="Inter-Medium" family="Inter" pointSize="16"/>
+                                <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </buttonConfiguration>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="24"/>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="buttonPlaceOrderClicked:" destination="-1" eventType="touchUpInside" id="bzn-Sf-A2M"/>
+                            </connections>
+                        </button>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="iZ0-iY-Sak">
+                            <rect key="frame" x="16" y="37" width="361" height="83"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="jOx-Bj-5CB">
+                                    <rect key="frame" x="0.0" y="0.0" width="361" height="17"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtotal" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ddc-OM-wIi">
+                                            <rect key="frame" x="0.0" y="0.0" width="160" height="17"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="160" id="eec-Fo-n1T"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Inter-Medium" family="Inter" pointSize="14"/>
+                                            <color key="textColor" name="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ce5-vU-JSa">
+                                            <rect key="frame" x="241" y="0.0" width="120" height="17"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="Voj-Dw-51B"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Inter-Medium" family="Inter" pointSize="14"/>
+                                            <color key="textColor" name="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="M68-6l-BzZ">
+                                    <rect key="frame" x="0.0" y="33" width="361" height="17"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delivery Fee" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DTR-tt-MeO">
+                                            <rect key="frame" x="0.0" y="0.0" width="160" height="17"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="160" id="N6Q-x0-byW"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Inter-Medium" family="Inter" pointSize="14"/>
+                                            <color key="textColor" name="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jhH-Gi-psf">
+                                            <rect key="frame" x="241" y="0.0" width="120" height="17"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="zgM-ml-cU7"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Inter-Medium" family="Inter" pointSize="14"/>
+                                            <color key="textColor" name="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="9M6-xq-48g">
+                                    <rect key="frame" x="0.0" y="66" width="361" height="17"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order Total" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oRu-vh-zxv">
+                                            <rect key="frame" x="0.0" y="0.0" width="160" height="17"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="160" id="NsD-d4-4y2"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Inter-Bold" family="Inter" pointSize="14"/>
+                                            <color key="textColor" name="titleColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDu-V0-ZGw">
+                                            <rect key="frame" x="241" y="0.0" width="120" height="17"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="dGP-xH-9ji"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Inter-Bold" family="Inter" pointSize="14"/>
+                                            <color key="textColor" name="titleColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                    </subviews>
                     <color key="backgroundColor" name="backgroundColor"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="160" id="0XU-bb-KWU"/>
+                        <constraint firstAttribute="height" constant="200" id="0XU-bb-KWU"/>
+                        <constraint firstItem="iZ0-iY-Sak" firstAttribute="leading" secondItem="NPj-w4-wXb" secondAttribute="leading" constant="16" id="1hA-zD-hk8"/>
+                        <constraint firstAttribute="trailing" secondItem="iZ0-iY-Sak" secondAttribute="trailing" constant="16" id="4dC-Sw-93h"/>
+                        <constraint firstAttribute="bottom" secondItem="swJ-kg-DoH" secondAttribute="bottom" constant="16" id="BMP-8A-siB"/>
+                        <constraint firstItem="swJ-kg-DoH" firstAttribute="leading" secondItem="NPj-w4-wXb" secondAttribute="leading" constant="16" id="gss-lk-kHB"/>
+                        <constraint firstAttribute="trailing" secondItem="swJ-kg-DoH" secondAttribute="trailing" constant="16" id="vBU-MG-c5r"/>
+                        <constraint firstItem="swJ-kg-DoH" firstAttribute="top" secondItem="iZ0-iY-Sak" secondAttribute="bottom" constant="16" id="zad-ed-89W"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="12"/>
+                    </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
@@ -49,7 +163,16 @@
     </objects>
     <resources>
         <namedColor name="backgroundColor">
-            <color red="0.99999994039535522" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="tertiaryColor">
+            <color red="0.9570000171661377" green="0.41200000047683716" blue="0.016000000759959221" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="textColor">
+            <color red="0.32899999618530273" green="0.4309999942779541" blue="0.4779999852180481" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="titleColor">
+            <color red="0.14900000393390656" green="0.19599999487400055" blue="0.2199999988079071" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

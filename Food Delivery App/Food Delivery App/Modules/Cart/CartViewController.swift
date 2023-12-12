@@ -9,11 +9,23 @@ import UIKit
 import Alamofire
 import Lottie
 
+//Not: Cart productId bulunmamaktadır. /!\
+
 final class CartViewController: UIViewController {
+    
+    let context = appDelegate.persistentContainer.viewContext
     
     @IBOutlet weak var cartTableView: UITableView!
     
-    var viewModel: CartViewModel?
+    @IBOutlet weak var labelSubtotal: UILabel!
+    
+    @IBOutlet weak var labelDeliveryFee: UILabel!
+    
+    @IBOutlet weak var labelOrderTotal: UILabel!
+    
+    //var st = 0.0
+    
+    var viewModel: CartViewModelProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +40,21 @@ final class CartViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-      // control()
+        // control()
+    }
+    
+    @IBAction func buttonPlaceOrderClicked(_ sender: Any) {
+        showConfirmationAlert(title: "Warning", message: "Are you sure you want to confirm the order?") { b in
+            if b == true {
+                
+                DispatchQueue.main.asyncAfter(deadline: .now()+0.2) {
+                    let orderHistoryViewController = OrderViewController(nibName: String(describing: OrderViewController.self), bundle: .main)
+                    orderHistoryViewController.modalTransitionStyle = .flipHorizontal
+                    orderHistoryViewController.modalPresentationStyle = .formSheet
+                    self.present(orderHistoryViewController, animated: true)
+                }
+            }
+        }
     }
     
     private func showAnimation() {
@@ -54,14 +80,18 @@ final class CartViewController: UIViewController {
     }
     
     private func setNavigationBar() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu")?.withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(tests))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu")?.withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(goToBack))
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "profile-circle")?.withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(tests))
         
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
-    @objc func tests(){
+    @objc func goToBack() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func tests() {
         
     }
     
@@ -69,7 +99,7 @@ final class CartViewController: UIViewController {
         super.viewWillAppear(animated)
         getData()
         
-      //  control()
+        //  control()
     }
     
     private func getData() {
@@ -104,6 +134,9 @@ extension CartViewController: tableV {
         cell.delegate = self
         cell.indexPath = indexPath
         cell.prepareForCartItem(with: model)
+        
+       
+        
         return cell
     }
 }
@@ -129,10 +162,26 @@ extension CartViewController: CartViewModelDelegate {
                 self.cartTableView.dataSource = self
                 self.cartTableView.reloadData()
                 
-              //  self.control()
+                var result: Double = 0.0
+                
+                if let list = self.viewModel?.cartFoodList {
+                    list.enumerated().forEach { (index,listItem) in
+                        let quantity = Double(listItem.yemek_siparis_adet ?? "0") ?? 0.0
+                        let price = Double(listItem.yemek_fiyat ?? "0") ?? 0.0
+                        result += (quantity * price)
+                    }
+                }
+                
+                self.labelSubtotal.text = String(result).appending(" ₺")
+                self.labelDeliveryFee.text = String(self.viewModel?.deliveryFee ?? 0.0).appending(" ₺")
+                self.labelOrderTotal.text =  String(result + (self.viewModel?.deliveryFee ?? 0.0)).appending(" ₺")
             }
         case .fetchFailed(let error):
-            self.cartTableView.dataSource = nil
+            DispatchQueue.main.async {
+                self.cartTableView.dataSource = nil
+                self.viewModel?.subTotal = 0.0
+                self.labelSubtotal.text = "0.0"
+            }
             print(error.localizedDescription)
         case .removeFood:
             DispatchQueue.main.async {
@@ -167,5 +216,7 @@ extension CartViewController: CartItemTableCellDelegate {
             }
         }
     }
+    
+    
     
 }

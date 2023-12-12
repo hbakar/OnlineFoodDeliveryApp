@@ -41,13 +41,23 @@
                             <action selector="buttonAddFavoriteClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="xpS-nO-ljs"/>
                         </connections>
                     </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aGY-Hk-yQU">
+                        <rect key="frame" x="16" y="49" width="294" height="1"/>
+                        <color key="backgroundColor" name="gray10"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="SGf-Gj-Gg8"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="RyE-UP-hkr" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="0e6-Dr-fWR"/>
+                    <constraint firstItem="aGY-Hk-yQU" firstAttribute="leading" secondItem="hnI-aw-87r" secondAttribute="leading" id="27B-9v-Wth"/>
+                    <constraint firstItem="aGY-Hk-yQU" firstAttribute="trailing" secondItem="RyE-UP-hkr" secondAttribute="trailing" id="Af7-Yf-fR2"/>
                     <constraint firstItem="hnI-aw-87r" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="EVx-Ck-IDR"/>
                     <constraint firstAttribute="bottom" secondItem="hnI-aw-87r" secondAttribute="bottom" constant="13" id="EbU-51-drZ"/>
                     <constraint firstItem="hnI-aw-87r" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="G4i-YC-sLf"/>
                     <constraint firstAttribute="trailing" secondItem="RyE-UP-hkr" secondAttribute="trailing" constant="16" id="U4r-W5-YT2"/>
+                    <constraint firstAttribute="bottom" secondItem="aGY-Hk-yQU" secondAttribute="bottom" id="XGh-QD-MjI"/>
                     <constraint firstItem="RyE-UP-hkr" firstAttribute="leading" secondItem="hnI-aw-87r" secondAttribute="trailing" constant="16" id="Ya1-UY-3Bj"/>
                     <constraint firstItem="hnI-aw-87r" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12.999999999999998" id="x5q-Em-m9o"/>
                 </constraints>
@@ -64,6 +74,9 @@
         <image name="favorite" width="32" height="32"/>
         <namedColor name="gray01">
             <color red="0.14900000393390656" green="0.19599999487400055" blue="0.2199999988079071" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="gray10">
+            <color red="0.81199997663497925" green="0.84700000286102295" blue="0.86299997568130493" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

@@ -52,6 +52,12 @@ class CartItemTableCell: UITableViewCell {
         
         let url = URL(string: Constants.getFoodImage.appending(model.yemek_resim_adi ?? ""))
         cartImage.kf.setImage(with: url)
+        
+        DispatchQueue.main.async {
+            let x = Int(model.yemek_fiyat ?? "0") ?? 0
+            let y = Int(model.yemek_siparis_adet ?? "0") ?? 0
+        
+        }
     }
     
     @IBAction func buttonRemoveClicked(_ sender: Any) {

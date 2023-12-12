@@ -113,30 +113,19 @@ final class HomeViewController: UIViewController, tableV {
         homeTableView.dataSource = self
     }
     
-    private func getCartItemCount() {
-        
-        DispatchQueue.main.async {
-            if let cnt = self.tabBarController?.tabBar.items {
-                
-                var count = 0
-                if let cnt2 = cnt[2] as? UITabBarItem {
-                   
-                    if UserDefaults.standard.integer(forKey: "cookieFoodCount") > 0 {
-                        UserDefaults.standard.integer(forKey: "cookieFoodCount")
-                        UserDefaults.standard.setValue(count, forKey: "cookieFoodCount")
-                        Singleton.shared.cartItemCount = count
-                    }
-                    else {
-                        Singleton.shared.cartItemCount = count
-                        UserDefaults.standard.setValue(count, forKey: "cookieFoodCount")
-                    }
-                    
-                    // Singleton.shared.cartItemCount = Singleton.shared.cartItemCount + 1
-                    cnt2.badgeValue = String(Singleton.shared.cartItemCount)
-                }
-            }
-        }
-    }
+    /*
+     private func getCartItemCount() {
+         
+         
+         if let cnt = self.tabBarController?.tabBar.items {
+             
+             if let cnt2 = cnt[2] as? UITabBarItem {
+                 let count = self.viewModel?.cartFoodList.count ?? 0
+                 cnt2.badgeValue = String(count)
+             }
+         }
+     }
+     */
     
     private func setNavigationBar() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu")?.withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(tests))
@@ -155,19 +144,10 @@ final class HomeViewController: UIViewController, tableV {
         
         DispatchQueue.main.async {
             if let cnt = self.tabBarController?.tabBar.items {
-                
                 var count = 0
                 if let cnt2 = cnt[2] as? UITabBarItem {
-                    if UserDefaults.standard.integer(forKey: "cookieFoodCount") > 0 {
-                        UserDefaults.standard.integer(forKey: "cookieFoodCount")
-                        UserDefaults.standard.setValue(count, forKey: "cookieFoodCount")
-                        Singleton.shared.cartItemCount = count
-                    }
-                    else {
-                        Singleton.shared.cartItemCount = Singleton.shared.cartItemCount + 1
-                        UserDefaults.standard.setValue(count, forKey: "cookieFoodCount")
-                    }
-                    cnt2.badgeValue = String(Singleton.shared.cartItemCount)
+                    let count = self.viewModel?.cartFoodList.count ?? 0
+                    cnt2.badgeValue = String(count)
                 }
             }
         }
@@ -297,7 +277,7 @@ extension HomeViewController: UITextFieldDelegate {
 }
 
 extension HomeViewController: FoodTableViewCellDelegate {
-  
+    
     func didClickedCollectionItem(with indexPath: IndexPath) {
         if let item = viewModel?.isSearch == true ? viewModel?.searchList[indexPath.row] : viewModel?.foodList[indexPath.row] {
             let detailViewController = DetailViewController(nibName: String(describing: DetailViewController.self), bundle: .main)

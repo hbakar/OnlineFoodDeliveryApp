@@ -14,7 +14,15 @@ protocol CartViewModelProtocol {
     
     var cartFoodList: [CartFoodResponseResult] {get set}
     
+    var subTotal: Double {get set}
+    
+    var deliveryFee: Double {get set}
+    
+    var orderTotal: Double {get set}
+    
     func getCartFoodList(with url:String, params: Parameters)
     
     func removeFoodFromCart(with url:String, params: Parameters)
+    
+    func getSubTotal(with quantity: Double,y: Double) -> Double
 }

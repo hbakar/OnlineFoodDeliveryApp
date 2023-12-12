@@ -6,14 +6,27 @@
 //
 
 import UIKit
+import Lottie
 
 final class OrderViewController: UIViewController {
 
-    @IBOutlet weak var orderTableView: UITableView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationBar()
+        showAnimation()
+    }
+    
+    private func showAnimation() {
+        let animationView = LottieAnimationView()
+        animationView.animation = LottieAnimation.named("notFound")
+        animationView.contentMode = .scaleAspectFit
+        animationView.frame = CGRect(x: 0, y: 0, width: 150, height: 150)
+        animationView.center = view.center
+        
+        animationView.animationSpeed = 1.5
+        animationView.loopMode = .loop
+        view.addSubview(animationView)
+        animationView.play()
     }
     
     private func setNavigationBar() {
@@ -22,28 +35,8 @@ final class OrderViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "profile-circle")?.withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(tests))
     }
     
-    @objc func tests(){
+    @objc func tests() {
         
     }
 
-}
-
-extension OrderViewController: tableV {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-  
-        let cell = UITableViewCell()
-        
-        
-        /*
-         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: OrderItemTableCell.self), for: indexPath) as? OrderItemTableCell else { return UITableViewCell() }
-         */
-      //  cell.prepareForCartItem(with: "")
-        
-        return cell
-    }
 }

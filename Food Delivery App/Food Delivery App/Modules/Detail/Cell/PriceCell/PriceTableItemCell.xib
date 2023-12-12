@@ -32,9 +32,19 @@
                         <color key="textColor" name="tertiaryColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pDS-KH-qYc">
+                        <rect key="frame" x="16" y="43" width="288" height="1"/>
+                        <color key="backgroundColor" name="gray10"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="tXJ-5u-MaC"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="pDS-KH-qYc" secondAttribute="trailing" constant="16" id="8f0-fe-R8D"/>
                     <constraint firstItem="IXP-we-3Mw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="22" id="AFI-8R-snA"/>
+                    <constraint firstAttribute="bottom" secondItem="pDS-KH-qYc" secondAttribute="bottom" id="FKT-16-RMS"/>
+                    <constraint firstItem="pDS-KH-qYc" firstAttribute="leading" secondItem="IXP-we-3Mw" secondAttribute="leading" id="Reh-9x-mAz"/>
                     <constraint firstItem="IXP-we-3Mw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="TG3-fb-gwA"/>
                     <constraint firstAttribute="bottom" secondItem="IXP-we-3Mw" secondAttribute="bottom" constant="22" id="nrF-l3-MWE"/>
                     <constraint firstItem="IXP-we-3Mw" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="x3U-Si-fzN"/>
@@ -48,6 +58,9 @@
         </tableViewCell>
     </objects>
     <resources>
+        <namedColor name="gray10">
+            <color red="0.81199997663497925" green="0.84700000286102295" blue="0.86299997568130493" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="tertiaryColor">
             <color red="0.9570000171661377" green="0.41200000047683716" blue="0.016000000759959221" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
